@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Step 1: Setup form -->
+  <div class="setup-overlay" id="setup-overlay">
+    <div class="setup-card">
+      <div class="setup-heart" aria-hidden="true">♥</div>
+      <h1>Welcome to Love Memory</h1>
+      <p class="setup-sub">Tell us about your story to begin.</p>
+
+      <form id="setup-form" novalidate>
+        <fieldset>
+          <legend>Your anniversary</legend>
+          <label for="anniversary-date">Date you started dating</label>
+          <input type="date" id="anniversary-date" required />
+        </fieldset>
+
+        <div class="partner-fields">
+          <fieldset>
+            <legend>Partner 1</legend>
+            <label for="p1-name">Name</label>
+            <input type="text" id="p1-name" placeholder="e.g. Maya" required />
+            <label for="p1-birth">Birthday</label>
+            <input type="date" id="p1-birth" />
+            <label for="p1-photo">Photo (optional)</label>
+            <input type="file" id="p1-photo" accept="image/*" />
+          </fieldset>
+
+          <fieldset>
+            <legend>Partner 2</legend>
+            <label for="p2-name">Name</label>
+            <input type="text" id="p2-name" placeholder="e.g. Leo" required />
+            <label for="p2-birth">Birthday</label>
+            <input type="date" id="p2-birth" />
+            <label for="p2-photo">Photo (optional)</label>
+            <input type="file" id="p2-photo" accept="image/*" />
+          </fieldset>
+        </div>
+
+        <p class="form-error" id="setup-error" role="alert" hidden></p>
+        <button type="submit" class="btn btn-primary">Begin Our Story</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Step 2+: Main app -->
+  <div class="app" id="main-app" hidden>
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">♥</span>
+        <span>Love Memory</span>
+      </div>
+      <button type="button" class="btn btn-ghost" id="reset-btn" title="Reset all data">Reset</button>
+    </header>
+
+    <!-- Hero: Couple profiles + Days Counter -->
+    <section class="hero" aria-label="Relationship overview">
+      <article class="profile-card profile-left" id="profile-p1">
+        <div class="avatar-wrap">
+          <div class="avatar" id="avatar-p1"></div>
+          <button type="button" class="avatar-edit-btn" data-partner="partner1" aria-label="Edit partner 1 photo">✎</button>
+        </div>
+        <h2 class="profile-name" id="name-p1">—</h2>
+        <p class="profile-birth" id="birth-p1"></p>
+        <p class="profile-countdown" id="countdown-p1"></p>
+        <button type="button" class="btn btn-ghost btn-edit-profile" data-partner="partner1">Edit Profile</button>
+      </article>
+
+      <div class="days-counter">
+        <p class="days-label">Days Together</p>
+        <p class="days-number" id="days-count">0</p>
+        <p class="days-suffix">Days</p>
+        <p class="since-date" id="since-date"></p>
+      </div>
+
+      <article class="profile-card profile-right" id="profile-p2">
+        <div class="avatar-wrap">
+          <div class="avatar" id="avatar-p2"></div>
+          <button type="button" class="avatar-edit-btn" data-partner="partner2" aria-label="Edit partner 2 photo">✎</button>
+        </div>
+        <h2 class="profile-name" id="name-p2">—</h2>
+        <p class="profile-birth" id="birth-p2"></p>
+        <p class="profile-countdown" id="countdown-p2"></p>
+        <button type="button" class="btn btn-ghost btn-edit-profile" data-partner="partner2">Edit Profile</button>
+      </article>
+    </section>
+
+    <!-- Upcoming Anniversaries -->
+    <section class="section anniversaries-section" aria-label="Upcoming anniversaries">
+      <div class="section-head">
+        <h2>Upcoming Milestones</h2>
+        <p>Counting down to the next chapters of your love story.</p>
+      </div>
+      <div class="anniversary-grid" id="anniversary-grid"></div>
+    </section>
+
+    <!-- Memory Timeline -->
+    <section class="section timeline-section" aria-label="Memory timeline">
+      <div class="section-head">
+        <h2>Our Memory Timeline</h2>
+        <p>Every milestone, laugh, and quiet moment — in order.</p>
+      </div>
+      <div class="timeline" id="timeline"></div>
+      <div class="timeline-empty" id="timeline-empty" hidden>
+        <p>No memories yet. Add your first one below!</p>
+      </div>
+      <button type="button" class="btn btn-primary btn-add" id="add-memory-btn">+ Add Memory</button>
+    </section>
+
+    <footer class="footer">
+      Made with love. Your story lives here.
+    </footer>
+  </div>
+
+  <!-- Edit Profile modal -->
+  <div class="modal-overlay" id="profile-modal" hidden>
+    <div class="modal" role="dialog" aria-labelledby="profile-modal-title" aria-modal="true">
+      <button type="button" class="modal-close" id="profile-modal-close" aria-label="Close">&times;</button>
+      <h2 id="profile-modal-title">Edit Profile</h2>
+      <form id="profile-form">
+        <div class="profile-preview">
+          <div class="avatar avatar-preview" id="profile-preview-avatar"></div>
+          <p class="profile-preview-hint">Upload a new photo or remove the current one</p>
+        </div>
+
+        <label for="edit-name">Name</label>
+        <input type="text" id="edit-name" required />
+
+        <label for="edit-birth">Birthday</label>
+        <input type="date" id="edit-birth" />
+
+        <label for="edit-photo">Photo</label>
+        <input type="file" id="edit-photo" accept="image/*" />
+
+        <button type="button" class="btn btn-ghost btn-remove-photo" id="remove-photo-btn">Remove Photo</button>
+
+        <p class="form-error" id="profile-error" role="alert" hidden></p>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="profile-modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Memory modal -->
+  <div class="modal-overlay" id="memory-modal" hidden>
+    <div class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+      <button type="button" class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <h2 id="modal-title">Add a Memory</h2>
+      <form id="memory-form">
+        <label for="mem-title">Title</label>
+        <input type="text" id="mem-title" placeholder="e.g. Our first movie date" required />
+
+        <label for="mem-date">Date</label>
+        <input type="date" id="mem-date" required />
+
+        <label for="mem-desc">Description</label>
+        <textarea id="mem-desc" rows="3" placeholder="What made this moment special?" required></textarea>
+
+        <label for="mem-photo">Photo (optional)</label>
+        <input type="file" id="mem-photo" accept="image/*" />
+
+        <p class="form-error" id="memory-error" role="alert" hidden></p>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="modal-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Memory</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
