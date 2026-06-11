@@ -1,1385 +1,213 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Love Memory</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-</head>
-<body>
-  <style>
-    *,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-:root {
-  --ink: #2b2528;
-  --muted: #70656a;
-  --paper: #fffaf6;
-  --rose: #d84f68;
-  --coral: #f17864;
-  --gold: #d9a441;
-  --mint: #8db8a7;
-  --sky: #8eb5d8;
-  --plum: #76526d;
-  --blush: #f7e7e3;
-  --line: rgba(43, 37, 40, 0.12);
-  --shadow: 0 22px 60px rgba(81, 45, 48, 0.14);
-  --radius: 16px;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: "DM Sans", system-ui, sans-serif;
-  color: var(--ink);
-  background: var(--paper);
-  min-height: 100vh;
-}
-
-h1, h2, h3 {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-/* ── Buttons ── */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 22px;
-  border-radius: 10px;
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  border: none;
-  transition: transform 0.15s, background 0.2s, box-shadow 0.2s;
-}
-
-.btn:active {
-  transform: scale(0.97);
-}
-
-.btn-primary {
-  background: var(--rose);
-  color: #fff;
-  box-shadow: 0 8px 24px rgba(216, 79, 104, 0.3);
-}
-
-.btn-primary:hover {
-  background: #c43d56;
-}
-
-.btn-ghost {
-  background: transparent;
-  color: var(--muted);
-  border: 1px solid var(--line);
-}
-
-.btn-ghost:hover {
-  background: var(--blush);
-  color: var(--ink);
-}
-
-.btn-add {
-  display: block;
-  margin: 32px auto 0;
-  font-size: 1rem;
-  padding: 14px 28px;
-}
-
-/* ── Setup overlay (Step 1) ── */
-
-.setup-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  background:
-    linear-gradient(rgba(43, 37, 40, 0.45), rgba(43, 37, 40, 0.5)),
-    linear-gradient(135deg, #f7e7e3 0%, #8eb5d8 50%, #d84f68 100%);
-}
-
-.setup-overlay[hidden] {
-  display: none;
-}
-
-.setup-card {
-  width: min(640px, 100%);
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 40px 36px;
-  background: var(--paper);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  text-align: center;
-}
-
-.setup-heart {
-  font-size: 2.4rem;
-  color: var(--rose);
-  margin-bottom: 8px;
-}
-
-.setup-card h1 {
-  margin: 0;
-  font-size: 2.2rem;
-  color: var(--plum);
-}
-
-.setup-sub {
-  margin: 10px 0 28px;
-  color: var(--muted);
-}
-
-.setup-card fieldset {
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 18px;
-  margin: 0 0 16px;
-  text-align: left;
-}
-
-.setup-card legend {
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: var(--rose);
-  padding: 0 6px;
-}
-
-.partner-fields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.setup-card label {
-  display: block;
-  margin: 12px 0 6px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.setup-card label:first-of-type {
-  margin-top: 0;
-}
-
-.setup-card input[type="text"],
-.setup-card input[type="date"],
-.setup-card input[type="file"],
-.modal input[type="text"],
-.modal input[type="date"],
-.modal input[type="file"],
-.modal textarea {
-  width: 100%;
-  padding: 10px 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 0.95rem;
-  background: #fff;
-  color: var(--ink);
-}
-
-.setup-card input:focus,
-.modal input:focus,
-.modal textarea:focus {
-  outline: none;
-  border-color: var(--rose);
-  box-shadow: 0 0 0 3px rgba(216, 79, 104, 0.12);
-}
-
-.setup-card .btn-primary {
-  width: 100%;
-  margin-top: 8px;
-  padding: 14px;
-  font-size: 1rem;
-}
-
-.form-error {
-  margin: 12px 0 0;
-  padding: 10px 14px;
-  border-radius: 8px;
-  background: rgba(216, 79, 104, 0.1);
-  color: var(--rose);
-  font-size: 0.88rem;
-  text-align: left;
-}
-
-/* ── Main app ── */
-
-.app {
-  min-height: 100vh;
-}
-
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px clamp(20px, 5vw, 64px);
-  background: var(--paper);
-  border-bottom: 1px solid var(--line);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--plum);
-}
-
-.brand-icon {
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--blush);
-  color: var(--rose);
-  font-size: 1rem;
-}
-
-/* ── Hero: Profiles + Days Counter ── */
-
-.hero {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: clamp(16px, 4vw, 48px);
-  padding: clamp(48px, 8vw, 96px) clamp(20px, 5vw, 64px);
-  background:
-    linear-gradient(rgba(255, 250, 246, 0.7), rgba(255, 250, 246, 0.85)),
-    linear-gradient(160deg, #f7e7e3 0%, #8eb5d8 60%, #f5c278 100%);
-  min-height: 70vh;
-}
-
-.profile-card {
-  text-align: center;
-  padding: 28px 20px;
-  background: rgba(255, 250, 246, 0.88);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
-}
-
-.profile-left {
-  justify-self: end;
-}
-
-.profile-right {
-  justify-self: start;
-}
-
-.avatar-wrap {
-  position: relative;
-  width: 110px;
-  margin: 0 auto 16px;
-}
-
-.avatar {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  background: var(--blush);
-  border: 3px solid #fff;
-  box-shadow: 0 8px 24px rgba(118, 82, 109, 0.18);
-  display: grid;
-  place-items: center;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--plum);
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-}
-
-.avatar-edit-btn {
-  position: absolute;
-  right: 0;
-  bottom: 4px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  background: var(--rose);
-  color: #fff;
-  font-size: 0.85rem;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 4px 12px rgba(216, 79, 104, 0.4);
-  transition: transform 0.15s, background 0.2s;
-}
-
-.avatar-edit-btn:hover {
-  background: #c43d56;
-  transform: scale(1.08);
-}
-
-.btn-edit-profile {
-  margin-top: 14px;
-  font-size: 0.82rem;
-  padding: 8px 16px;
-}
-
-.profile-name {
-  margin: 0;
-  font-size: 1.6rem;
-  color: var(--plum);
-}
-
-.profile-birth {
-  margin: 6px 0 0;
-  font-size: 0.88rem;
-  color: var(--muted);
-}
-
-.profile-countdown {
-  margin: 10px 0 0;
-  padding: 8px 14px;
-  display: inline-block;
-  border-radius: 20px;
-  background: var(--blush);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--rose);
-}
-
-.days-counter {
-  text-align: center;
-  padding: 40px 48px;
-  background: rgba(255, 250, 246, 0.92);
-  border: 1px solid rgba(216, 79, 104, 0.2);
-  border-radius: 24px;
-  box-shadow: var(--shadow);
-  min-width: 260px;
-}
-
-.days-label {
-  margin: 0;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--rose);
-}
-
-.days-number {
-  margin: 8px 0 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(4rem, 12vw, 7rem);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--plum);
-}
-
-.days-suffix {
-  margin: 4px 0 0;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.since-date {
-  margin: 16px 0 0;
-  font-size: 0.88rem;
-  color: var(--muted);
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-}
-
-/* ── Sections ── */
-
-.section {
-  padding: 64px clamp(20px, 5vw, 64px);
-}
-
-.section-head {
-  max-width: 560px;
-  margin-bottom: 32px;
-}
-
-.section-head h2 {
-  margin: 0;
-  font-size: clamp(1.8rem, 4vw, 2.8rem);
-  color: var(--plum);
-}
-
-.section-head p {
-  margin: 10px 0 0;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-.anniversaries-section {
-  background: #fff2e8;
-}
-
-.anniversary-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
-}
-
-.anniversary-card {
-  padding: 22px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.anniversary-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow);
-}
-
-.anniversary-card.past {
-  opacity: 0.55;
-}
-
-.anniversary-days {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--rose);
-  line-height: 1;
-}
-
-.anniversary-days span {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.anniversary-label {
-  margin: 8px 0 4px;
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-
-.anniversary-date {
-  font-size: 0.82rem;
-  color: var(--muted);
-}
-
-/* ── Timeline ── */
-
-.timeline-section {
-  background: var(--paper);
-}
-
-.timeline {
-  display: grid;
-  gap: 24px;
-  max-width: 720px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 28px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(var(--rose), var(--sky));
-  opacity: 0.3;
-}
-
-.memory-card {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 20px;
-  align-items: start;
-  animation: fade-up 0.4s ease;
-}
-
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.memory-dot {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--rose);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-size: 1.3rem;
-  flex-shrink: 0;
-  box-shadow: 0 4px 16px rgba(216, 79, 104, 0.35);
-  position: relative;
-  z-index: 1;
-}
-
-.memory-body {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(81, 45, 48, 0.08);
-}
-
-.memory-photo {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  display: block;
-  background: var(--blush);
-}
-
-.memory-photo-placeholder {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, var(--blush), var(--sky));
-  font-size: 2.5rem;
-  opacity: 0.6;
-}
-
-.memory-content {
-  padding: 20px 22px;
-}
-
-.memory-date {
-  font-size: 0.78rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--rose);
-}
-
-.memory-title {
-  margin: 6px 0 8px;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.35rem;
-  color: var(--plum);
-}
-
-.memory-desc {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.65;
-  font-size: 0.95rem;
-}
-
-.timeline-empty {
-  text-align: center;
-  padding: 32px;
-  color: var(--muted);
-  border: 2px dashed var(--line);
-  border-radius: var(--radius);
-  max-width: 480px;
-  margin: 0 auto;
-}
-
-.footer {
-  padding: 24px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.88rem;
-  border-top: 1px solid var(--line);
-}
-
-/* ── Modal ── */
-
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-  background: rgba(43, 37, 40, 0.5);
-  backdrop-filter: blur(4px);
-}
-
-.modal-overlay[hidden] {
-  display: none;
-}
-
-.modal {
-  width: min(480px, 100%);
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 32px 28px;
-  background: var(--paper);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  position: relative;
-}
-
-.modal-close {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-  background: none;
-  border: none;
-  font-size: 1.6rem;
-  color: var(--muted);
-  cursor: pointer;
-  line-height: 1;
-}
-
-.modal h2 {
-  margin: 0 0 20px;
-  font-size: 1.6rem;
-  color: var(--plum);
-}
-
-.modal label {
-  display: block;
-  margin: 14px 0 6px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.modal label:first-of-type {
-  margin-top: 0;
-}
-
-.modal textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-.modal-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: flex-end;
-  margin-top: 20px;
-}
-
-.profile-preview {
-  text-align: center;
-  margin-bottom: 8px;
-}
-
-.avatar-preview {
-  margin: 0 auto 10px;
-  width: 96px;
-  height: 96px;
-  font-size: 2rem;
-}
-
-.profile-preview-hint {
-  margin: 0 0 8px;
-  font-size: 0.82rem;
-  color: var(--muted);
-}
-
-.btn-remove-photo {
-  width: 100%;
-  margin-top: 8px;
-  color: var(--rose);
-  border-color: rgba(216, 79, 104, 0.3);
-}
-
-.btn-remove-photo:hover {
-  background: rgba(216, 79, 104, 0.08);
-  color: var(--rose);
-}
-
-.btn-remove-photo[hidden] {
-  display: none;
-}
-
-/* ── Responsive ── */
-
-@media (max-width: 860px) {
-  .hero {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-    text-align: center;
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Love Memory V6</title>
+<style>
+*{
+  box-sizing:border-box
+}
+  body{
+    margin:0;
+    font-family:system-ui;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    color:#fff
   }
-
-  .profile-left,
-  .profile-right {
-    justify-self: center;
-    width: min(320px, 100%);
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 16px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(10px)
+}
+.row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:60px 10px 20px;gap:14px
+}
+.card{
+  background:rgba(255,255,255,.15);
+  border-radius:22px;
+  padding:12px;
+  text-align:center;
+  backdrop-filter:blur(10px)
+}
+.profile{
+  width:36%
+}
+  .center{
+    width:28%
   }
+.profile img{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  object-fit:cover;
+  border:3px solid #fff
+}
+.modal,.menu{
+  display:none;
+  position:fixed;
+  inset:0;background:rgba(0,0,0,.6);
+  justify-content:center;
+  align-items:center
+}
+.sheet,.box{
+  background:#fff;
+  color:#222;
+  border-radius:20px;
+  padding:18px;width:92%;
+  max-width:420px
+}
+input,select,button{
+  width:100%;padding:12px;
+  margin-top:8px
+}
+.colors{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;margin-top:10px
+}
+.color{
+  height:40px;
+  border-radius:10px;
+  cursor:pointer
+}
+.counter{
+  position:fixed;
+  bottom:10px;
+  left:10px;
+  right:10px;
+  text-align:center;
+  background:rgba(255,255,255,.18);
+  padding:16px;
+  border-radius:18px;
+  font-size:28px;
+  font-weight:700;
+  backdrop-filter:blur(10px)
+}
+</style>
+  </head>
+  <body>
 
-  .days-counter {
-    order: -1;
-    width: min(360px, 100%);
-    margin: 0 auto;
-  }
+<div class="topbar">
+<b>❤️ Love Memory</b>
+<button onclick="openMenu()" style="padding:8px 12px;font-size:14px;width:auto">Edit ⚙️</button>
+</div>
 
-  .partner-fields {
-    grid-template-columns: 1fr;
-  }
+<div class="row">
+<div class="card profile" onclick="editProfile(1)">
+<div style="font-size:22px">💖</div><img id="img1" src="https://via.placeholder.com/90"><h3 id="name1">Partner 1</h3><p id="info1"></p>
+</div>
+
+<div class="card center">
+<div style="font-size:20px">❤️</div><div id="ann">2024-01-01</div>
+<h1 id="days">0</h1><small>Days Together</small>
+</div>
+
+<div class="card profile" onclick="editProfile(2)">
+<div style="font-size:22px">💖</div><img id="img2" src="https://via.placeholder.com/90"><h3 id="name2">Partner 2</h3><p id="info2"></p>
+</div>
+</div>
+
+<div class="counter" id="liveCounter"></div>
+
+<div id="profileModal" class="modal"><div class="sheet">
+<h3>Edit Profile</h3>
+<input id="pname" placeholder="Name">
+<select id="pgender"><option>Male</option><option>Female</option></select>
+<input id="pdob" type="date">
+<input id="pimg" type="file" accept="image/*">
+<button onclick="saveProfile()">Save</button>
+<button onclick="closeProfile()">Close</button>
+</div></div>
+
+<div id="menu" class="menu"><div class="box">
+<h3>Edit Options</h3>
+<button onclick="openAnniversaryEditor()">Change Anniversary Date</button>
+<button onclick="openBackgroundPicker()">Change Background</button>
+<button onclick="closeMenu()">Close</button>
+</div></div>
+
+<div id="annModal" class="modal"><div class="box">
+<h3>Change Anniversary Date</h3>
+<input id="annInput" type="date">
+<button onclick="saveAnniversary()">Save Date</button>
+</div></div>
+
+<div id="bgModal" class="modal"><div class="box">
+<h3>Choose Background</h3>
+<div class="colors">
+<div class="color" style="background:#ff758c" onclick="setColor('#ff758c')"></div>
+<div class="color" style="background:#8e44ad" onclick="setColor('#8e44ad')"></div>
+<div class="color" style="background:#3498db" onclick="setColor('#3498db')"></div>
+<div class="color" style="background:#16a085" onclick="setColor('#16a085')"></div>
+<div class="color" style="background:#f39c12" onclick="setColor('#f39c12')"></div>
+<div class="color" style="background:#e74c3c" onclick="setColor('#e74c3c')"></div>
+<div class="color" style="background:#2c3e50" onclick="setColor('#2c3e50')"></div>
+</div>
+<button onclick="uploadBackground()">Use My Photo</button>
+<button onclick="bgModal.style.display='none'">Close</button>
+</div>
+</div>
+<script>
+let current=1;
+let data=JSON.parse(localStorage.getItem('love_v6')||'{"anniversary":"2024-01-01"}');
+function age(d){if(!d)return '';let b=new Date(d),t=new Date();let a=t.getFullYear()-b.getFullYear();if(t.getMonth()<b.getMonth()||(t.getMonth()==b.getMonth()&&t.getDate()<b.getDate()))a--;return a;}
+function save(){localStorage.setItem('love_v6',JSON.stringify(data));render();}
+function render(){
+name1.textContent=data.name1'Partner 1';name2.textContent=data.name2'Partner 2';
+info1.textContent=(data.gender1||'')+' '+(data.dob1?('• '+age(data.dob1)+' yrs'):''); 
+info2.textContent=(data.gender2||'')+' '+(data.dob2?('• '+age(data.dob2)+' yrs'):'');
+if(data.img1)img1.src=data.img1;if(data.img2)img2.src=data.img2;
+ann.textContent=data.anniversary;
+days.textContent=Math.floor((Date.now()-new Date(data.anniversary))/86400000);
+}
+function editProfile(n){current=n;profileModal.style.display='flex';}
+function closeProfile(){profileModal.style.display='none';}
+function saveProfile(){
+data['name'+current]=pname.value;data['gender'+current]=pgender.value;data['dob'+current]=pdob.value;
+let f=pimg.files[0]; if(f){let r=new FileReader();r.onload=e=>{data['img'+current]=e.target.result;save();};r.readAsDataURL(f);} else save();
+closeProfile();
+}
+function openMenu(){menu.style.display='flex'} function closeMenu(){menu.style.display='none'}
+function openAnniversaryEditor(){menu.style.display='none';annModal.style.display='flex';annInput.value=data.anniversary||'';}
+function saveAnniversary(){data.anniversary=annInput.value;save();annModal.style.display='none';}
+function openBackgroundPicker(){menu.style.display='none';bgModal.style.display='flex';}
+function setColor(c){document.body.style.background=c;localStorage.setItem('bgcolor',c);bgModal.style.display='none';}
+function uploadBackground(){let i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=e=>{let r=new FileReader();r.onload=x=>{document.body.style.backgroundImage=url(${x.target.result});document.body.style.backgroundSize='cover';document.body.style.backgroundRepeat='no-repeat';document.body.style.backgroundPosition='center center';document.body.style.backgroundAttachment='fixed';localStorage.setItem('bgimg',x.target.result);};r.readAsDataURL(e.target.files[0]);};i.click();}
+function updateCounter(){
+let start=new Date(data.anniversary);
+let now=new Date();
+
+let years=now.getFullYear()-start.getFullYear();
+let months=now.getMonth()-start.getMonth();
+let days=now.getDate()-start.getDate();
+
+if(days<0){
+ let prevMonth=new Date(now.getFullYear(),now.getMonth(),0);
+ days+=prevMonth.getDate();
+ months--;
+}
+if(months<0){
+ months+=12;
+ years--;
 }
 
-@media (max-width: 520px) {
-  .setup-card {
-    padding: 28px 20px;
-  }
+let diffMs=now-start;
+let hrs=Math.floor(diffMs/(1000*60*60))%24;
+let mins=Math.floor(diffMs/(1000*60))%60;
+let secs=Math.floor(diffMs/1000)%60;
 
-  .timeline::before {
-    display: none;
-  }
-
-  .memory-card {
-    grid-template-columns: 1fr;
-  }
-
-  .memory-dot {
-    width: 44px;
-    height: 44px;
-    font-size: 1rem;
-    margin: 0 auto;
-  }
+liveCounter.innerHTML=❤️ ${years}Y &nbsp; 💖 ${months}M <br>💝 ${days}D &nbsp; 💓 ${hrs}H &nbsp; 💞 ${mins}M &nbsp; 💗 ${secs}S;
 }
-
-  </style>
-  <!-- Step 1: Setup form -->
-  <div class="setup-overlay" id="setup-overlay">
-    <div class="setup-card">
-      <div class="setup-heart" aria-hidden="true">♥</div>
-      <h1>Welcome to Love Memory</h1>
-      <p class="setup-sub">Tell us about your story to begin.</p>
-
-      <form id="setup-form" novalidate>
-        <fieldset>
-          <legend>Your anniversary</legend>
-          <label for="anniversary-date">Date you started dating</label>
-          <input type="date" id="anniversary-date" required />
-        </fieldset>
-
-        <div class="partner-fields">
-          <fieldset>
-            <legend>Partner 1</legend>
-            <label for="p1-name">Name</label>
-            <input type="text" id="p1-name" placeholder="e.g. Maya" required />
-            <label for="p1-birth">Birthday</label>
-            <input type="date" id="p1-birth" />
-            <label for="p1-photo">Photo (optional)</label>
-            <input type="file" id="p1-photo" accept="image/*" />
-          </fieldset>
-
-          <fieldset>
-            <legend>Partner 2</legend>
-            <label for="p2-name">Name</label>
-            <input type="text" id="p2-name" placeholder="e.g. Leo" required />
-            <label for="p2-birth">Birthday</label>
-            <input type="date" id="p2-birth" />
-            <label for="p2-photo">Photo (optional)</label>
-            <input type="file" id="p2-photo" accept="image/*" />
-          </fieldset>
-        </div>
-
-        <p class="form-error" id="setup-error" role="alert" hidden></p>
-        <button type="submit" class="btn btn-primary">Begin Our Story</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Step 2+: Main app -->
-  <div class="app" id="main-app" hidden>
-    <header class="top-bar">
-      <div class="brand">
-        <span class="brand-icon" aria-hidden="true">♥</span>
-        <span>Love Memory</span>
-      </div>
-      <button type="button" class="btn btn-ghost" id="reset-btn" title="Reset all data">Reset</button>
-    </header>
-
-    <!-- Hero: Couple profiles + Days Counter -->
-    <section class="hero" aria-label="Relationship overview">
-      <article class="profile-card profile-left" id="profile-p1">
-        <div class="avatar-wrap">
-          <div class="avatar" id="avatar-p1"></div>
-          <button type="button" class="avatar-edit-btn" data-partner="partner1" aria-label="Edit partner 1 photo">✎</button>
-        </div>
-        <h2 class="profile-name" id="name-p1">—</h2>
-        <p class="profile-birth" id="birth-p1"></p>
-        <p class="profile-countdown" id="countdown-p1"></p>
-        <button type="button" class="btn btn-ghost btn-edit-profile" data-partner="partner1">Edit Profile</button>
-      </article>
-
-      <div class="days-counter">
-        <p class="days-label">Days Together</p>
-        <p class="days-number" id="days-count">0</p>
-        <p class="days-suffix">Days</p>
-        <p class="since-date" id="since-date"></p>
-      </div>
-
-      <article class="profile-card profile-right" id="profile-p2">
-        <div class="avatar-wrap">
-          <div class="avatar" id="avatar-p2"></div>
-          <button type="button" class="avatar-edit-btn" data-partner="partner2" aria-label="Edit partner 2 photo">✎</button>
-        </div>
-        <h2 class="profile-name" id="name-p2">—</h2>
-        <p class="profile-birth" id="birth-p2"></p>
-        <p class="profile-countdown" id="countdown-p2"></p>
-        <button type="button" class="btn btn-ghost btn-edit-profile" data-partner="partner2">Edit Profile</button>
-      </article>
-    </section>
-
-    <!-- Upcoming Anniversaries -->
-    <section class="section anniversaries-section" aria-label="Upcoming anniversaries">
-      <div class="section-head">
-        <h2>Upcoming Milestones</h2>
-        <p>Counting down to the next chapters of your love story.</p>
-      </div>
-      <div class="anniversary-grid" id="anniversary-grid"></div>
-    </section>
-
-    <!-- Memory Timeline -->
-    <section class="section timeline-section" aria-label="Memory timeline">
-      <div class="section-head">
-        <h2>Our Memory Timeline</h2>
-        <p>Every milestone, laugh, and quiet moment — in order.</p>
-      </div>
-      <div class="timeline" id="timeline"></div>
-      <div class="timeline-empty" id="timeline-empty" hidden>
-        <p>No memories yet. Add your first one below!</p>
-      </div>
-      <button type="button" class="btn btn-primary btn-add" id="add-memory-btn">+ Add Memory</button>
-    </section>
-
-    <footer class="footer">
-      Made with love. Your story lives here.
-    </footer>
-  </div>
-
-  <!-- Edit Profile modal -->
-  <div class="modal-overlay" id="profile-modal" hidden>
-    <div class="modal" role="dialog" aria-labelledby="profile-modal-title" aria-modal="true">
-      <button type="button" class="modal-close" id="profile-modal-close" aria-label="Close">&times;</button>
-      <h2 id="profile-modal-title">Edit Profile</h2>
-      <form id="profile-form">
-        <div class="profile-preview">
-          <div class="avatar avatar-preview" id="profile-preview-avatar"></div>
-          <p class="profile-preview-hint">Upload a new photo or remove the current one</p>
-        </div>
-
-        <label for="edit-name">Name</label>
-        <input type="text" id="edit-name" required />
-
-        <label for="edit-birth">Birthday</label>
-        <input type="date" id="edit-birth" />
-
-        <label for="edit-photo">Photo</label>
-        <input type="file" id="edit-photo" accept="image/*" />
-
-        <button type="button" class="btn btn-ghost btn-remove-photo" id="remove-photo-btn">Remove Photo</button>
-
-        <p class="form-error" id="profile-error" role="alert" hidden></p>
-
-        <div class="modal-actions">
-          <button type="button" class="btn btn-ghost" id="profile-modal-cancel">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Changes</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Add Memory modal -->
-  <div class="modal-overlay" id="memory-modal" hidden>
-    <div class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
-      <button type="button" class="modal-close" id="modal-close" aria-label="Close">&times;</button>
-      <h2 id="modal-title">Add a Memory</h2>
-      <form id="memory-form">
-        <label for="mem-title">Title</label>
-        <input type="text" id="mem-title" placeholder="e.g. Our first movie date" required />
-
-        <label for="mem-date">Date</label>
-        <input type="date" id="mem-date" required />
-
-        <label for="mem-desc">Description</label>
-        <textarea id="mem-desc" rows="3" placeholder="What made this moment special?" required></textarea>
-
-        <label for="mem-photo">Photo (optional)</label>
-        <input type="file" id="mem-photo" accept="image/*" />
-
-        <p class="form-error" id="memory-error" role="alert" hidden></p>
-
-        <div class="modal-actions">
-          <button type="button" class="btn btn-ghost" id="modal-cancel">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Memory</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <script>const STORAGE_KEY = "loveMemoryData";
-
-    const MILESTONES = [
-      { days: 100, label: "100 Days Together" },
-      { days: 200, label: "200 Days Together" },
-      { days: 365, label: "1 Year Anniversary" },
-      { days: 500, label: "500 Days Together" },
-      { days: 730, label: "2 Year Anniversary" },
-      { days: 1000, label: "1000 Days Together" },
-      { days: 1095, label: "3 Year Anniversary" },
-      { days: 1500, label: "1500 Days Together" },
-      { days: 1825, label: "5 Year Anniversary" },
-    ];
-    
-    const setupOverlay = document.getElementById("setup-overlay");
-    const setupForm = document.getElementById("setup-form");
-    const setupError = document.getElementById("setup-error");
-    const mainApp = document.getElementById("main-app");
-    const resetBtn = document.getElementById("reset-btn");
-    const daysCountEl = document.getElementById("days-count");
-    const sinceDateEl = document.getElementById("since-date");
-    const anniversaryGrid = document.getElementById("anniversary-grid");
-    const timelineEl = document.getElementById("timeline");
-    const timelineEmpty = document.getElementById("timeline-empty");
-    const addMemoryBtn = document.getElementById("add-memory-btn");
-    const memoryModal = document.getElementById("memory-modal");
-    const memoryForm = document.getElementById("memory-form");
-    const memoryError = document.getElementById("memory-error");
-    const modalClose = document.getElementById("modal-close");
-    const modalCancel = document.getElementById("modal-cancel");
-    const profileModal = document.getElementById("profile-modal");
-    const profileForm = document.getElementById("profile-form");
-    const profileError = document.getElementById("profile-error");
-    const profileModalClose = document.getElementById("profile-modal-close");
-    const profileModalCancel = document.getElementById("profile-modal-cancel");
-    const profileModalTitle = document.getElementById("profile-modal-title");
-    const profilePreviewAvatar = document.getElementById("profile-preview-avatar");
-    const removePhotoBtn = document.getElementById("remove-photo-btn");
-    const editPhotoInput = document.getElementById("edit-photo");
-    
-    let appData = null;
-    let editingPartner = null;
-    let removePhotoFlag = false;
-    let pendingPreviewPhoto = null;
-    
-    function loadData() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        return raw ? JSON.parse(raw) : null;
-      } catch {
-        return null;
-      }
-    }
-    
-    function saveData() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
-    }
-    
-    function parseDate(str) {
-      const [y, m, d] = str.split("-").map(Number);
-      return new Date(y, m - 1, d);
-    }
-    
-    function formatDate(date) {
-      return date.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-    }
-    
-    function daysBetween(start, end) {
-      const ms = end.getTime() - start.getTime();
-      return Math.floor(ms / (1000 * 60 * 60 * 24));
-    }
-    
-    function addDays(date, n) {
-      const d = new Date(date);
-      d.setDate(d.getDate() + n);
-      return d;
-    }
-    
-    function getInitials(name) {
-      return name
-        .split(" ")
-        .map((w) => w[0])
-        .join("")
-        .toUpperCase()
-        .slice(0, 2);
-    }
-    
-    function daysUntilBirthday(birthStr) {
-      if (!birthStr) return null;
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const birth = parseDate(birthStr);
-      let next = new Date(today.getFullYear(), birth.getMonth(), birth.getDate());
-      if (next < today) {
-        next = new Date(today.getFullYear() + 1, birth.getMonth(), birth.getDate());
-      }
-      return daysBetween(today, next);
-    }
-    
-    function readFileAsDataURL(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-      });
-    }
-    
-    function setAvatar(el, partner) {
-      if (partner.photo) {
-        el.style.backgroundImage = `url(${partner.photo})`;
-        el.textContent = "";
-      } else {
-        el.style.backgroundImage = "";
-        el.textContent = getInitials(partner.name);
-      }
-    }
-    
-    function renderProfiles() {
-      const p1 = appData.partner1;
-      const p2 = appData.partner2;
-    
-      document.getElementById("name-p1").textContent = p1.name;
-      document.getElementById("name-p2").textContent = p2.name;
-    
-      const birthP1 = document.getElementById("birth-p1");
-      const birthP2 = document.getElementById("birth-p2");
-      birthP1.textContent = p1.birthDate ? `Born ${formatDate(parseDate(p1.birthDate))}` : "";
-      birthP2.textContent = p2.birthDate ? `Born ${formatDate(parseDate(p2.birthDate))}` : "";
-    
-      const cd1 = daysUntilBirthday(p1.birthDate);
-      const cd2 = daysUntilBirthday(p2.birthDate);
-      document.getElementById("countdown-p1").textContent = cd1 !== null
-        ? `🎂 Birthday in ${cd1} day${cd1 === 1 ? "" : "s"}`
-        : "";
-      document.getElementById("countdown-p2").textContent = cd2 !== null
-        ? `🎂 Birthday in ${cd2} day${cd2 === 1 ? "" : "s"}`
-        : "";
-    
-      setAvatar(document.getElementById("avatar-p1"), p1);
-      setAvatar(document.getElementById("avatar-p2"), p2);
-    }
-    
-    function renderDaysCounter() {
-      const anniversary = parseDate(appData.anniversaryDate);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const days = daysBetween(anniversary, today);
-    
-      daysCountEl.textContent = days >= 0 ? days : 0;
-      sinceDateEl.textContent = `Since ${formatDate(anniversary)}`;
-    }
-    
-    function renderAnniversaries() {
-      const anniversary = parseDate(appData.anniversaryDate);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const currentDays = daysBetween(anniversary, today);
-    
-      const upcoming = MILESTONES.map((m) => {
-        const targetDate = addDays(anniversary, m.days);
-        const daysLeft = daysBetween(today, targetDate);
-        return { ...m, targetDate, daysLeft, passed: daysLeft < 0 };
-      }).filter((m) => m.daysLeft >= -30);
-    
-      anniversaryGrid.innerHTML = upcoming
-        .map((m) => {
-          const countdown = m.passed
-            ? "Celebrated!"
-            : m.daysLeft === 0
-              ? "Today!"
-              : `${m.daysLeft} <span>days left</span>`;
-    
-          return `
-            <article class="anniversary-card${m.passed ? " past" : ""}">
-              <div class="anniversary-days">${countdown}</div>
-              <p class="anniversary-label">${m.label}</p>
-              <p class="anniversary-date">${formatDate(m.targetDate)}</p>
-            </article>
-          `;
-        })
-        .join("");
-    
-      if (upcoming.length === 0) {
-        anniversaryGrid.innerHTML = `<p style="color:var(--muted);grid-column:1/-1">All milestones celebrated — here's to many more!</p>`;
-      }
-    }
-    
-    function renderTimeline() {
-      const memories = [...appData.memories].sort(
-        (a, b) => parseDate(b.date) - parseDate(a.date)
-      );
-    
-      timelineEmpty.hidden = memories.length > 0;
-    
-      timelineEl.innerHTML = memories
-        .map((mem) => {
-          const photoHtml = mem.photo
-            ? `<img class="memory-photo" src="${mem.photo}" alt="${mem.title}" />`
-            : `<div class="memory-photo-placeholder" aria-hidden="true">♥</div>`;
-    
-          return `
-            <article class="memory-card">
-              <div class="memory-dot" aria-hidden="true">♥</div>
-              <div class="memory-body">
-                ${photoHtml}
-                <div class="memory-content">
-                  <span class="memory-date">${formatDate(parseDate(mem.date))}</span>
-                  <h3 class="memory-title">${escapeHtml(mem.title)}</h3>
-                  <p class="memory-desc">${escapeHtml(mem.description)}</p>
-                </div>
-              </div>
-            </article>
-          `;
-        })
-        .join("");
-    }
-    
-    function escapeHtml(str) {
-      const div = document.createElement("div");
-      div.textContent = str;
-      return div.innerHTML;
-    }
-    
-    function showApp() {
-      setupOverlay.hidden = true;
-      mainApp.hidden = false;
-      renderProfiles();
-      renderDaysCounter();
-      renderAnniversaries();
-      renderTimeline();
-    }
-    
-    function showSetup() {
-      setupOverlay.hidden = false;
-      mainApp.hidden = true;
-    }
-    
-    function renderAll() {
-      if (appData) {
-        showApp();
-      } else {
-        showSetup();
-      }
-    }
-    
-    setupForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      setupError.hidden = true;
-    
-      const anniversaryDate = document.getElementById("anniversary-date").value;
-      const p1Name = document.getElementById("p1-name").value.trim();
-      const p2Name = document.getElementById("p2-name").value.trim();
-      const p1Birth = document.getElementById("p1-birth").value;
-      const p2Birth = document.getElementById("p2-birth").value;
-      const p1PhotoFile = document.getElementById("p1-photo").files[0];
-      const p2PhotoFile = document.getElementById("p2-photo").files[0];
-    
-      if (!anniversaryDate || !p1Name || !p2Name) {
-        setupError.textContent = "Please fill in the anniversary date and both names.";
-        setupError.hidden = false;
-        return;
-      }
-    
-      const anniversary = parseDate(anniversaryDate);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      if (anniversary > today) {
-        setupError.textContent = "Anniversary date cannot be in the future.";
-        setupError.hidden = false;
-        return;
-      }
-    
-      let p1Photo = "";
-      let p2Photo = "";
-      if (p1PhotoFile) p1Photo = await readFileAsDataURL(p1PhotoFile);
-      if (p2PhotoFile) p2Photo = await readFileAsDataURL(p2PhotoFile);
-    
-      appData = {
-        anniversaryDate,
-        partner1: { name: p1Name, birthDate: p1Birth, photo: p1Photo },
-        partner2: { name: p2Name, birthDate: p2Birth, photo: p2Photo },
-        memories: [],
-      };
-    
-      saveData();
-      showApp();
-    });
-    
-    function openProfileModal(partnerKey) {
-      editingPartner = partnerKey;
-      removePhotoFlag = false;
-      pendingPreviewPhoto = null;
-    
-      const partner = appData[partnerKey];
-      profileModalTitle.textContent = `Edit ${partner.name}'s Profile`;
-      document.getElementById("edit-name").value = partner.name;
-      document.getElementById("edit-birth").value = partner.birthDate || "";
-      editPhotoInput.value = "";
-      profileError.hidden = true;
-    
-      setAvatar(profilePreviewAvatar, partner);
-      removePhotoBtn.hidden = !partner.photo;
-    
-      profileModal.hidden = false;
-      document.getElementById("edit-name").focus();
-    }
-    
-    function closeProfileModal() {
-      profileModal.hidden = true;
-      profileForm.reset();
-      profileError.hidden = true;
-      editingPartner = null;
-      removePhotoFlag = false;
-      pendingPreviewPhoto = null;
-    }
-    
-    function updateProfilePreview() {
-      const name = document.getElementById("edit-name").value.trim() || appData[editingPartner].name;
-      const previewPartner = {
-        name,
-        photo: removePhotoFlag ? "" : pendingPreviewPhoto || appData[editingPartner].photo,
-      };
-      setAvatar(profilePreviewAvatar, previewPartner);
-      removePhotoBtn.hidden = !previewPartner.photo;
-    }
-    
-    document.querySelectorAll(".btn-edit-profile, .avatar-edit-btn").forEach((btn) => {
-      btn.addEventListener("click", () => openProfileModal(btn.dataset.partner));
-    });
-    
-    profileModalClose.addEventListener("click", closeProfileModal);
-    profileModalCancel.addEventListener("click", closeProfileModal);
-    profileModal.addEventListener("click", (e) => {
-      if (e.target === profileModal) closeProfileModal();
-    });
-    
-    document.getElementById("edit-name").addEventListener("input", updateProfilePreview);
-    
-    removePhotoBtn.addEventListener("click", () => {
-      removePhotoFlag = true;
-      pendingPreviewPhoto = null;
-      editPhotoInput.value = "";
-      updateProfilePreview();
-    });
-    
-    editPhotoInput.addEventListener("change", async () => {
-      const file = editPhotoInput.files[0];
-      if (!file) return;
-      removePhotoFlag = false;
-      pendingPreviewPhoto = await readFileAsDataURL(file);
-      updateProfilePreview();
-    });
-    
-    profileForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      profileError.hidden = true;
-    
-      const name = document.getElementById("edit-name").value.trim();
-      const birthDate = document.getElementById("edit-birth").value;
-      const photoFile = editPhotoInput.files[0];
-    
-      if (!name) {
-        profileError.textContent = "Please enter a name.";
-        profileError.hidden = false;
-        return;
-      }
-    
-      const partner = appData[editingPartner];
-      partner.name = name;
-      partner.birthDate = birthDate;
-    
-      if (removePhotoFlag) {
-        partner.photo = "";
-      } else if (photoFile) {
-        partner.photo = await readFileAsDataURL(photoFile);
-      }
-    
-      saveData();
-      renderProfiles();
-      closeProfileModal();
-    });
-    
-    resetBtn.addEventListener("click", () => {
-      if (confirm("Reset everything? All memories and profile data will be deleted.")) {
-        localStorage.removeItem(STORAGE_KEY);
-        appData = null;
-        setupForm.reset();
-        showSetup();
-      }
-    });
-    
-    function openModal() {
-      memoryModal.hidden = false;
-      memoryForm.reset();
-      memoryError.hidden = true;
-      document.getElementById("mem-title").focus();
-    }
-    
-    function closeModal() {
-      memoryModal.hidden = true;
-      memoryForm.reset();
-      memoryError.hidden = true;
-    }
-    
-    addMemoryBtn.addEventListener("click", openModal);
-    modalClose.addEventListener("click", closeModal);
-    modalCancel.addEventListener("click", closeModal);
-    memoryModal.addEventListener("click", (e) => {
-      if (e.target === memoryModal) closeModal();
-    });
-    
-    memoryForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      memoryError.hidden = true;
-    
-      const title = document.getElementById("mem-title").value.trim();
-      const date = document.getElementById("mem-date").value;
-      const description = document.getElementById("mem-desc").value.trim();
-      const photoFile = document.getElementById("mem-photo").files[0];
-    
-      if (!title || !date || !description) {
-        memoryError.textContent = "Please fill in title, date, and description.";
-        memoryError.hidden = false;
-        return;
-      }
-    
-      let photo = "";
-      if (photoFile) photo = await readFileAsDataURL(photoFile);
-    
-      appData.memories.push({
-        id: Date.now().toString(),
-        title,
-        date,
-        description,
-        photo,
-      });
-    
-      saveData();
-      renderTimeline();
-      closeModal();
-    });
-    
-    appData = loadData();
-    renderAll();
-    </script>
+let c=localStorage.getItem('bgcolor'); if(c) document.body.style.background=c;
+let i=localStorage.getItem('bgimg'); if(i){document.body.style.backgroundImage=url(${i});document.body.style.backgroundSize='cover';document.body.style.backgroundRepeat='no-repeat';document.body.style.backgroundPosition='center center';document.body.style.backgroundAttachment='fixed';}
+render(); 
+  setInterval(updateCounter,1000);
+</script>
 </body>
 </html>
