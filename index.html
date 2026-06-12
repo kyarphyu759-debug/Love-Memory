@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>❤️ Love Memory V11</title>
+
+<title>❤️ Love Memory V11 Fixed</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-</head>
-
-<body>
 <style>
-  *{
+
+*{
 margin:0;
 padding:0;
 box-sizing:border-box;
@@ -28,6 +28,10 @@ background-repeat:no-repeat;
 color:white;
 overflow-x:hidden;
 }
+
+/* =========================
+   TOPBAR
+========================= */
 
 .topbar{
 height:70px;
@@ -55,11 +59,24 @@ font-size:14px;
 font-weight:600;
 cursor:pointer;
 backdrop-filter:blur(10px);
+transition:.3s;
 }
 
-.container{
-padding:30px 15px 220px;
+.edit-btn:hover{
+transform:scale(1.05);
 }
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container{
+padding:30px 15px 240px;
+}
+
+/* =========================
+   PROFILE ROW
+========================= */
 
 .cards-row{
 display:flex;
@@ -72,22 +89,34 @@ margin-top:15px;
 .profile-card{
 width:38%;
 max-width:180px;
+
 padding:18px 10px;
+
 text-align:center;
+
 border-radius:28px;
+
 background:rgba(255,255,255,.15);
+
 backdrop-filter:blur(15px);
+
 border:1px solid rgba(255,255,255,.15);
+
 box-shadow:0 10px 25px rgba(0,0,0,.15);
+
 cursor:pointer;
 }
 
 .profile-card img{
 width:90px;
 height:90px;
+
 border-radius:50%;
+
 object-fit:cover;
+
 border:4px solid white;
+
 margin-bottom:10px;
 }
 
@@ -97,22 +126,36 @@ margin-bottom:5px;
 }
 
 .profile-card p{
-font-size:18px;
+font-size:16px;
 opacity:.95;
 }
 
+/* =========================
+   ANNIVERSARY CARD
+========================= */
+
 .anniversary-card{
-width:28%;
-max-width:150px;
-min-width:120px;
+
+width:30%;
+
+max-width:170px;
+
+min-width:130px;
+
 padding:18px 8px;
+
 overflow:hidden;
 
 text-align:center;
+
 border-radius:28px;
+
 background:rgba(255,255,255,.15);
+
 backdrop-filter:blur(15px);
+
 border:1px solid rgba(255,255,255,.15);
+
 box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 
@@ -122,15 +165,19 @@ margin-bottom:10px;
 }
 
 #days{
-font-size:42px;
+font-size:36px;
 font-weight:700;
 line-height:1;
 margin-bottom:10px;
 word-break:break-word;
 }
 
+/* =========================
+   HEART ANIMATION
+========================= */
+
 .floating-heart{
-font-size:32px;
+font-size:30px;
 margin-bottom:10px;
 animation:heartBeat 1.5s infinite;
 }
@@ -151,16 +198,26 @@ transform:scale(1);
 
 }
 
+/* =========================
+   LOVE MESSAGE
+========================= */
+
 .love-message{
+
 width:92%;
+
 margin:35px auto;
+
 padding:20px;
 
 text-align:center;
+
 line-height:1.8;
-font-size:17px;
+
+font-size:16px;
 
 background:rgba(255,255,255,.12);
+
 backdrop-filter:blur(12px);
 
 border-radius:25px;
@@ -169,6 +226,10 @@ border:1px solid rgba(255,255,255,.18);
 
 box-shadow:0 8px 20px rgba(0,0,0,.12);
 }
+
+/* =========================
+   LIVE COUNTER
+========================= */
 
 .love-counter{
 
@@ -179,12 +240,12 @@ left:10px;
 right:10px;
 
 display:grid;
+
 grid-template-columns:repeat(3,1fr);
 
 gap:8px;
 
 z-index:50;
-
 }
 
 .love-box{
@@ -195,33 +256,35 @@ backdrop-filter:blur(15px);
 
 border:1px solid rgba(255,255,255,.2);
 
-border-radius:18px;
+border-radius:16px;
 
-padding:10px;
+padding:8px;
 
-min-height:95px;
+min-height:85px;
 
 text-align:center;
 
 box-shadow:0 8px 20px rgba(0,0,0,.15);
-
 }
 
 .love-icon{
-font-size:22px;
+font-size:20px;
 margin-bottom:5px;
 animation:heartBeat 1.5s infinite;
 }
 
 .love-box div:nth-child(2){
-font-size:20px;
+font-size:18px;
 font-weight:700;
 }
 
 .love-box span{
-font-size:12px;
+font-size:11px;
 opacity:.9;
 }
+/* =========================
+   MODALS
+========================= */
 
 .modal{
 display:none;
@@ -344,6 +407,10 @@ color:white;
 font-weight:600;
 }
 
+/* =========================
+   COLOR PICKER
+========================= */
+
 .colors{
 display:grid;
 grid-template-columns:repeat(4,1fr);
@@ -357,6 +424,10 @@ border-radius:14px;
 cursor:pointer;
 border:2px solid rgba(255,255,255,.4);
 }
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:480px){
 
@@ -378,7 +449,7 @@ font-size:15px;
 }
 
 #days{
-font-size:38px;
+font-size:32px;
 }
 
 .love-message{
@@ -386,8 +457,11 @@ font-size:15px;
 }
 
 }
+
 </style>
-<!-- TOPBAR -->
+</head>
+
+<body>
 
 <header class="topbar">
 
@@ -400,8 +474,6 @@ font-size:15px;
 </button>
 
 </header>
-
-<!-- MAIN -->
 
 <div class="container">
 
@@ -427,17 +499,11 @@ font-size:15px;
 
 <div class="floating-heart">❤️</div>
 
-<div id="ann">
-2022-05-05
-</div>
+<div id="ann">2022-05-05</div>
 
-<h1 id="days">
-0
-</h1>
+<h1 id="days">0</h1>
 
-<span>
-Days Together
-</span>
+<span>Days Together</span>
 
 </div>
 
@@ -461,7 +527,7 @@ Days Together
 
 <div class="love-message">
 
-💖 Through every smile, every challenge, and every dream, my heart will always belong to you. 💖
+💖 Through every smile, every challenge, and every dream, my heart will always belong to you, today, tomorrow, and forever. 💖
 
 </div>
 
@@ -508,23 +574,25 @@ Days Together
 </div>
 
 </div>
-
-<!-- PROFILE MODAL -->
+<!-- PROFILE EDIT MODAL -->
 
 <div class="modal" id="profileModal">
 
 <div class="sheet">
 
-<h2>Edit Profile</h2>
+<h2>❤️ Edit Profile</h2>
 
 <input
 type="text"
 id="pname"
-placeholder="Name">
+placeholder="Enter Name">
 
 <select id="pgender">
-<option>Male</option>
-<option>Female</option>
+
+<option value="Male">Male</option>
+
+<option value="Female">Female</option>
+
 </select>
 
 <input
@@ -537,18 +605,18 @@ id="pimg"
 accept="image/*">
 
 <button onclick="saveProfile()">
-Save
+💾 Save
 </button>
 
 <button onclick="closeProfile()">
-Cancel
+❌ Cancel
 </button>
 
 </div>
 
 </div>
 
-<!-- SETTINGS -->
+<!-- SETTINGS MENU -->
 
 <div class="modal" id="menu">
 
@@ -578,12 +646,21 @@ Cancel
 
 <div class="box">
 
-<h3>❤️ Anniversary Date</h3>
+<h3>❤️ Change Anniversary Date</h3>
 
-<input type="date" id="annInput">
+<input
+type="date"
+id="annInput"
+style="
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+margin-top:10px;
+">
 
 <button onclick="saveAnniversary()">
-Save Date
+💖 Save Date
 </button>
 
 </div>
@@ -599,25 +676,52 @@ Save Date
 <h3>🎨 Choose Background</h3>
 
 <div class="colors">
+  
 
-<div class="color" style="background:#ff758c" onclick="setColor('#ff758c')"></div>
+<div class="color"
+style="background:#ff758c"
+onclick="setColor('#ff758c')">
+</div>
 
-<div class="color" style="background:#ff5e62" onclick="setColor('#ff5e62')"></div>
+<div class="color"
+style="background:#ff5e62"
+onclick="setColor('#ff5e62')">
+</div>
 
-<div class="color" style="background:#8e44ad" onclick="setColor('#8e44ad')"></div>
+<div class="color"
+style="background:#8e44ad"
+onclick="setColor('#8e44ad')">
+</div>
 
-<div class="color" style="background:#3498db" onclick="setColor('#3498db')"></div>
+<div class="color"
+style="background:#3498db"
+onclick="setColor('#3498db')">
+</div>
 
-<div class="color" style="background:#16a085" onclick="setColor('#16a085')"></div>
+<div class="color"
+style="background:#16a085"
+onclick="setColor('#16a085')">
+</div>
 
-<div class="color" style="background:#e67e22" onclick="setColor('#e67e22')"></div>
+<div class="color"
+style="background:#e67e22"
+onclick="setColor('#e67e22')">
+</div>
 
-<div class="color" style="background:#2c3e50" onclick="setColor('#2c3e50')"></div>
+<div class="color"
+style="background:#2c3e50"
+onclick="setColor('#2c3e50')">
+</div>
+
+<div class="color"
+style="background:#e84393"
+onclick="setColor('#e84393')">
+</div>
 
 </div>
 
 <button onclick="uploadBackground()">
-🖼️ Use My Photo
+🖼 Use My Photo
 </button>
 
 <button onclick="closeBackgroundPicker()">
@@ -627,6 +731,7 @@ Save Date
 </div>
 
 </div>
+
 <script>
   let current = 1;
 
@@ -650,15 +755,16 @@ let age =
 today.getFullYear() -
 birth.getFullYear();
 
-let m =
+let monthDiff =
 today.getMonth() -
 birth.getMonth();
 
 if(
-m < 0 ||
+monthDiff < 0 ||
 (
-m === 0 &&
-today.getDate() < birth.getDate()
+monthDiff === 0 &&
+today.getDate() <
+birth.getDate()
 )
 ){
 age--;
@@ -669,7 +775,7 @@ return age;
 }
 
 /* =========================
-   RENDER
+   RENDER UI
 ========================= */
 
 function render(){
@@ -690,26 +796,31 @@ info2.textContent =
 " • " +
 (getAge(data.dob2) || "0");
 
-if(data.img1)
+if(data.img1){
 img1.src = data.img1;
+}
 
-if(data.img2)
+if(data.img2){
 img2.src = data.img2;
+}
 
 ann.textContent =
 data.anniversary;
 
 days.textContent =
 Math.floor(
-(Date.now() -
-new Date(data.anniversary))
-/ 86400000
+(
+Date.now() -
+new Date(data.anniversary)
+)
+/
+86400000
 );
 
 }
 
 /* =========================
-   SAVE
+   SAVE DATA
 ========================= */
 
 function save(){
@@ -793,9 +904,8 @@ save();
 closeProfile();
 
 }
-
 /* =========================
-   SETTINGS
+   SETTINGS MENU
 ========================= */
 
 function openMenu(){
@@ -813,7 +923,7 @@ menu.style.display =
 }
 
 /* =========================
-   ANNIVERSARY
+   ANNIVERSARY DATE
 ========================= */
 
 function openAnniversaryEditor(){
@@ -843,7 +953,7 @@ annModal.style.display =
 }
 
 /* =========================
-   BACKGROUND
+   BACKGROUND PICKER
 ========================= */
 
 function openBackgroundPicker(){
@@ -883,6 +993,10 @@ closeBackgroundPicker();
 
 }
 
+/* =========================
+   UPLOAD BACKGROUND PHOTO
+========================= */
+
 function uploadBackground(){
 
 let input =
@@ -890,8 +1004,7 @@ document.createElement("input");
 
 input.type = "file";
 
-input.accept =
-"image/*";
+input.accept = "image/*";
 
 input.onchange =
 function(e){
@@ -914,14 +1027,24 @@ document.body.style.backgroundSize =
 "cover";
 
 document.body.style.backgroundPosition =
-"center";
+"center center";
 
 document.body.style.backgroundRepeat =
 "no-repeat";
 
+document.body.style.backgroundAttachment =
+"fixed";
+
 localStorage.setItem(
 "bg_image",
-ev.target.result);
+ev.target.result
+);
+
+localStorage.removeItem(
+"bg_color"
+);
+
+closeBackgroundPicker();
 
 };
 
@@ -959,13 +1082,15 @@ document.body.style.backgroundSize =
 "cover";
 
 document.body.style.backgroundPosition =
-"center";
+"center center";
 
 document.body.style.backgroundRepeat =
 "no-repeat";
 
-}
+document.body.style.backgroundAttachment =
+"fixed";
 
+}
 /* =========================
    LIVE COUNTER
 ========================= */
@@ -978,7 +1103,7 @@ new Date(data.anniversary);
 let now =
 new Date();
 
-/* Years */
+/* Years Months Days */
 
 let years =
 now.getFullYear() -
@@ -1010,11 +1135,12 @@ days += lastMonthDays;
 if(months < 0){
 
 years--;
+
 months += 12;
 
 }
 
-/* Week + Day */
+/* Weeks + Remaining Days */
 
 let weeks =
 Math.floor(days / 7);
@@ -1042,7 +1168,7 @@ Math.floor(
 diff / 1000
 ) % 60;
 
-/* UI Update */
+/* Update UI */
 
 document.getElementById("years").textContent =
 years;
@@ -1062,14 +1188,14 @@ hours;
 document.getElementById("minutes").textContent =
 minutes;
 
-/* Optional Seconds */
+/* Optional seconds */
 
-let secEl =
+let sec =
 document.getElementById("seconds");
 
-if(secEl){
+if(sec){
 
-secEl.textContent =
+sec.textContent =
 seconds;
 
 }
@@ -1082,23 +1208,35 @@ seconds;
 
 window.onclick = function(e){
 
-if(e.target === profileModal)
+if(e.target === profileModal){
+
 closeProfile();
 
-if(e.target === menu)
+}
+
+if(e.target === menu){
+
 closeMenu();
 
-if(e.target === annModal)
+}
+
+if(e.target === annModal){
+
 annModal.style.display =
 "none";
 
-if(e.target === bgModal)
+}
+
+if(e.target === bgModal){
+
 closeBackgroundPicker();
+
+}
 
 };
 
 /* =========================
-   START
+   START APP
 ========================= */
 
 render();
@@ -1109,6 +1247,8 @@ setInterval(
 updateCounter,
 1000
 );
+
 </script>
+
 </body>
  </html>
