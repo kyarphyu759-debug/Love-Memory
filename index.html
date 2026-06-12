@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>❤️ Love Memory V11 Fixed</title>
+<title>❤️ Love Memory </title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -32,34 +32,25 @@ overflow-x:hidden;
 /* =========================
    TOPBAR
 ========================= */
+/* =========================
+   TOPBAR
+========================= */
 
 .topbar{
-height:70px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 20px;
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(15px);
-border-bottom:1px solid rgba(255,255,255,.15);
+height:20px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(10px);
+border-bottom:1px solid rgba(255,255,255,.1);
 }
 
+/* Hide old elements */
+
 .logo{
-font-size:28px;
-font-weight:700;
+display:none;
 }
 
 .edit-btn{
-padding:10px 16px;
-border:none;
-border-radius:15px;
-background:rgba(255,255,255,.18);
-color:white;
-font-size:14px;
-font-weight:600;
-cursor:pointer;
-backdrop-filter:blur(10px);
-transition:.3s;
+display:none;
 }
 
 .edit-btn:hover{
@@ -69,9 +60,8 @@ transform:scale(1.05);
 /* =========================
    MAIN CONTAINER
 ========================= */
-
 .container{
-padding:30px 15px 240px;
+padding:20px 15px 220px;
 }
 
 /* =========================
@@ -463,17 +453,15 @@ font-size:15px;
 
 <body>
 
-<header class="topbar">
+<!-- =========================
+     TOP BAR
+========================= -->
 
-<div class="logo">
-❤️ Love Memory
-</div>
+<header class="topbar"></header>
 
-<button class="edit-btn" onclick="openMenu()">
-⚙️ Edit
-</button>
-
-</header>
+<!-- =========================
+     MAIN CONTENT
+========================= -->
 
 <div class="container">
 
@@ -481,15 +469,25 @@ font-size:15px;
 
 <!-- Partner 1 -->
 
-<div class="profile-card" onclick="editProfile(1)">
+<div
+class="profile-card"
+onclick="editProfile(1)">
 
-<div class="floating-heart">💖</div>
+<div class="floating-heart">
+💖
+</div>
 
-<img id="img1" src="https://via.placeholder.com/150">
+<img
+id="img1"
+src="https://via.placeholder.com/150">
 
-<h2 id="name1">Partner 1</h2>
+<h2 id="name1">
+Partner 1
+</h2>
 
-<p id="info1">Male • 20</p>
+<p id="info1">
+Male • 20
+</p>
 
 </div>
 
@@ -497,27 +495,45 @@ font-size:15px;
 
 <div class="anniversary-card">
 
-<div class="floating-heart">❤️</div>
+<div class="floating-heart">
+❤️
+</div>
 
-<div id="ann">2022-05-05</div>
+<div id="ann">
+2022-05-05
+</div>
 
-<h1 id="days">0</h1>
+<h1 id="days">
+0
+</h1>
 
-<span>Days Together</span>
+<span>
+Days Together
+</span>
 
 </div>
 
 <!-- Partner 2 -->
 
-<div class="profile-card" onclick="editProfile(2)">
+<div
+class="profile-card"
+onclick="editProfile(2)">
 
-<div class="floating-heart">💖</div>
+<div class="floating-heart">
+💖
+</div>
 
-<img id="img2" src="https://via.placeholder.com/150">
+<img
+id="img2"
+src="https://via.placeholder.com/150">
 
-<h2 id="name2">Partner 2</h2>
+<h2 id="name2">
+Partner 2
+</h2>
 
-<p id="info2">Female • 18</p>
+<p id="info2">
+Female • 18
+</p>
 
 </div>
 
@@ -527,7 +543,9 @@ font-size:15px;
 
 <div class="love-message">
 
-💖 Through every smile, every challenge, and every dream, my heart will always belong to you, today, tomorrow, and forever. 💖
+💖 Through every smile, every challenge,
+and every dream, my heart will always
+belong to you. 💖
 
 </div>
 
@@ -1208,30 +1226,27 @@ seconds;
 
 window.onclick = function(e){
 
-if(e.target === profileModal){
+/* =========================
+   OPEN SETTINGS BY TAP BACKGROUND
+========================= */
 
-closeProfile();
+document.body.addEventListener(
+"click",
+function(e){
 
-}
+if(
+!e.target.closest(".profile-card") &&
+!e.target.closest(".anniversary-card") &&
+!e.target.closest(".love-box") &&
+!e.target.closest(".modal")
+){
 
-if(e.target === menu){
-
-closeMenu();
-
-}
-
-if(e.target === annModal){
-
-annModal.style.display =
-"none";
-
-}
-
-if(e.target === bgModal){
-
-closeBackgroundPicker();
+openMenu();
 
 }
+
+}
+);
 
 };
 
@@ -1251,4 +1266,4 @@ updateCounter,
 </script>
 
 </body>
- </html>
+   </html>
