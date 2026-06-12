@@ -1,97 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
+<!DOCTYPE html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
 <title>Love Memory V6</title>
 <style>
-*{
-  box-sizing:border-box
-}
-  body{
-    margin:0;
-    font-family:system-ui;
-    background:linear-gradient(135deg,#ff758c,#ff7eb3);
-    color:#fff
-  }
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 16px;
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(10px)
-}
-.row{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:60px 10px 20px;gap:14px
-}
-.card{
-  background:rgba(255,255,255,.15);
-  border-radius:22px;
-  padding:12px;
-  text-align:center;
-  backdrop-filter:blur(10px)
-}
-.profile{
-  width:36%
-}
-  .center{
-    width:28%
-  }
-.profile img{
-  width:90px;
-  height:90px;
-  border-radius:50%;
-  object-fit:cover;
-  border:3px solid #fff
-}
-.modal,.menu{
-  display:none;
-  position:fixed;
-  inset:0;background:rgba(0,0,0,.6);
-  justify-content:center;
-  align-items:center
-}
-.sheet,.box{
-  background:#fff;
-  color:#222;
-  border-radius:20px;
-  padding:18px;width:92%;
-  max-width:420px
-}
-input,select,button{
-  width:100%;padding:12px;
-  margin-top:8px
-}
-.colors{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;margin-top:10px
-}
-.color{
-  height:40px;
-  border-radius:10px;
-  cursor:pointer
-}
-.counter{
-  position:fixed;
-  bottom:10px;
-  left:10px;
-  right:10px;
-  text-align:center;
-  background:rgba(255,255,255,.18);
-  padding:16px;
-  border-radius:18px;
-  font-size:28px;
-  font-weight:700;
-  backdrop-filter:blur(10px)
-}
-</style>
-  </head>
-  <body>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui;background:linear-gradient(135deg,#ff758c,#ff7eb3);color:#fff}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:rgba(255,255,255,.12);backdrop-filter:blur(10px)}
+.row{display:flex;justify-content:center;align-items:center;padding:60px 10px 20px;gap:14px}
+.card{background:rgba(255,255,255,.15);border-radius:22px;padding:12px;text-align:center;backdrop-filter:blur(10px)}
+.profile{width:36%}.center{width:28%}
+.profile img{width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid #fff}
+.modal,.menu{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);justify-content:center;align-items:center}
+.sheet,.box{background:#fff;color:#222;border-radius:20px;padding:18px;width:92%;max-width:420px}
+input,select,button{width:100%;padding:12px;margin-top:8px}
+.colors{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.color{height:40px;border-radius:10px;cursor:pointer}
+.counter{position:fixed;bottom:10px;left:10px;right:10px;text-align:center;background:rgba(255,255,255,.18);padding:16px;border-radius:18px;font-size:28px;font-weight:700;backdrop-filter:blur(10px)}
+</style></head><body>
 
 <div class="topbar">
 <b>❤️ Love Memory</b>
@@ -151,15 +73,15 @@ input,select,button{
 </div>
 <button onclick="uploadBackground()">Use My Photo</button>
 <button onclick="bgModal.style.display='none'">Close</button>
-</div>
-</div>
+</div></div>
+
 <script>
 let current=1;
 let data=JSON.parse(localStorage.getItem('love_v6')||'{"anniversary":"2024-01-01"}');
 function age(d){if(!d)return '';let b=new Date(d),t=new Date();let a=t.getFullYear()-b.getFullYear();if(t.getMonth()<b.getMonth()||(t.getMonth()==b.getMonth()&&t.getDate()<b.getDate()))a--;return a;}
 function save(){localStorage.setItem('love_v6',JSON.stringify(data));render();}
 function render(){
-name1.textContent=data.name1'Partner 1';name2.textContent=data.name2'Partner 2';
+name1.textContent=data.name1||'Partner 1';name2.textContent=data.name2||'Partner 2';
 info1.textContent=(data.gender1||'')+' '+(data.dob1?('• '+age(data.dob1)+' yrs'):''); 
 info2.textContent=(data.gender2||'')+' '+(data.dob2?('• '+age(data.dob2)+' yrs'):'');
 if(data.img1)img1.src=data.img1;if(data.img2)img2.src=data.img2;
@@ -178,7 +100,7 @@ function openAnniversaryEditor(){menu.style.display='none';annModal.style.displa
 function saveAnniversary(){data.anniversary=annInput.value;save();annModal.style.display='none';}
 function openBackgroundPicker(){menu.style.display='none';bgModal.style.display='flex';}
 function setColor(c){document.body.style.background=c;localStorage.setItem('bgcolor',c);bgModal.style.display='none';}
-function uploadBackground(){let i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=e=>{let r=new FileReader();r.onload=x=>{document.body.style.backgroundImage=url(${x.target.result});document.body.style.backgroundSize='cover';document.body.style.backgroundRepeat='no-repeat';document.body.style.backgroundPosition='center center';document.body.style.backgroundAttachment='fixed';localStorage.setItem('bgimg',x.target.result);};r.readAsDataURL(e.target.files[0]);};i.click();}
+function uploadBackground(){let i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=e=>{let r=new FileReader();r.onload=x=>{document.body.style.backgroundImage=`url(${x.target.result})`;document.body.style.backgroundSize='cover';document.body.style.backgroundRepeat='no-repeat';document.body.style.backgroundPosition='center center';document.body.style.backgroundAttachment='fixed';localStorage.setItem('bgimg',x.target.result);};r.readAsDataURL(e.target.files[0]);};i.click();}
 function updateCounter(){
 let start=new Date(data.anniversary);
 let now=new Date();
@@ -202,12 +124,9 @@ let hrs=Math.floor(diffMs/(1000*60*60))%24;
 let mins=Math.floor(diffMs/(1000*60))%60;
 let secs=Math.floor(diffMs/1000)%60;
 
-liveCounter.innerHTML=❤️ ${years}Y &nbsp; 💖 ${months}M <br>💝 ${days}D &nbsp; 💓 ${hrs}H &nbsp; 💞 ${mins}M &nbsp; 💗 ${secs}S;
+liveCounter.innerHTML=`❤️ ${years}Y &nbsp; 💖 ${months}M <br>💝 ${days}D &nbsp; 💓 ${hrs}H &nbsp; 💞 ${mins}M &nbsp; 💗 ${secs}S`;
 }
 let c=localStorage.getItem('bgcolor'); if(c) document.body.style.background=c;
-let i=localStorage.getItem('bgimg'); if(i){document.body.style.backgroundImage=url(${i});document.body.style.backgroundSize='cover';document.body.style.backgroundRepeat='no-repeat';document.body.style.backgroundPosition='center center';document.body.style.backgroundAttachment='fixed';}
-render(); 
-  setInterval(updateCounter,1000);
-</script>
-</body>
-</html>
+let i=localStorage.getItem('bgimg'); if(i){document.body.style.backgroundImage=`url(${i})`;document.body.style.backgroundSize='cover';document.body.style.backgroundRepeat='no-repeat';document.body.style.backgroundPosition='center center';document.body.style.backgroundAttachment='fixed';}
+render(); setInterval(updateCounter,1000);
+</script></body></html>
