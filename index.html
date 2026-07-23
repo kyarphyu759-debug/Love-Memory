@@ -327,86 +327,162 @@
     .view-pager { flex: 1; max-width: 1100px; width: 100%; margin: 0 auto; padding: 20px; position: relative; }
     .page-tab { display: none; }
     .page-tab.active { display: block; }
-
+/* Compact & Cute Mobile Friendly Profile Cards */
     .hero {
       display: grid !important;
-      grid-template-columns: 1fr 1.1fr 1fr !important;
-      gap: 10px !important;
-      align-items: center;
-      margin-bottom: 20px;
+      grid-template-columns: 1fr 1fr 1fr !important;
+      gap: 8px !important;
+      align-items: stretch;
+      margin-bottom: 16px;
       width: 100%;
     }
 
     .profile-card {
       position: relative; 
       text-align: center; 
-      padding: 16px 8px;
-      background: rgba(255, 255, 255, 0.88); 
-      border-radius: 20px;
-      box-shadow: var(--shadow); 
-      border: 1px solid rgba(255,255,255,0.8);
+      padding: 10px 4px 8px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 238, 242, 0.9)); 
+      border-radius: 18px;
+      box-shadow: 0 4px 15px rgba(213, 95, 120, 0.12); 
+      border: 1.5 solid #fff;
       cursor: pointer; 
-      backdrop-filter: blur(6px); 
-      transition: transform 0.2s ease;
+      backdrop-filter: blur(8px); 
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
     }
-    .profile-card:hover { transform: translateY(-4px); }
-    .avatar-wrap { position: relative; width: 70px; height: 70px; margin: 0 auto 8px; }
+
+    /* Cute Tiny Flower Corner */
+    .profile-card::before {
+      content: "🌸";
+      position: absolute;
+      top: -6px;
+      left: 6px;
+      font-size: 0.75rem;
+    }
+
+    .profile-card:active { 
+      transform: scale(0.96); 
+    }
+
+    /* Small Avatar Wrap */
+    .avatar-wrap { 
+      position: relative; 
+      width: 44px; 
+      height: 44px; 
+      margin: 2px auto 6px; 
+    }
+
+    .avatar-wrap::after {
+      content: "💖";
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      font-size: 0.7rem;
+      background: #fff;
+      border-radius: 50%;
+      padding: 1px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+
     .avatar {
-      width: 100%; height: 100%; border-radius: 50%;
+      width: 100%; 
+      height: 100%; 
+      border-radius: 50%;
       background: linear-gradient(135deg, #fff1f4 0%, #ffd9de 100%);
-      border: 3px solid #fff; box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-      display: grid; place-items: center; font-size: 1.6rem; color: var(--plum);
-      overflow: hidden; background-size: cover; background-position: center;
+      border: 2px solid #ffccd5; 
+      box-shadow: 0 3px 8px rgba(213, 95, 120, 0.15);
+      display: grid; 
+      place-items: center; 
+      font-size: 1rem; 
+      color: var(--plum);
+      overflow: hidden; 
+      background-size: cover; 
+      background-position: center;
     }
 
     .profile-name { 
       margin: 0; 
-      font-size: 0.95rem; 
-      color: var(--plum); 
+      font-size: 0.78rem; 
+      color: #5c324c; 
       font-weight: 700; 
       white-space: nowrap; 
       overflow: hidden; 
       text-overflow: ellipsis; 
-      max-width: 100%;
+      width: 100%;
     }
-    .profile-meta { margin: 2px 0 0; font-size: 0.75rem; color: var(--muted); }
-    .profile-birth { margin: 2px 0 0; font-size: 0.7rem; color: var(--muted); }
-    .profile-countdown { 
-      margin: 6px auto 0; 
-      display: block; 
-      padding: 3px 6px; 
-      border-radius: 999px; 
-      background: rgba(242, 152, 156, 0.15); 
+
+    .profile-meta { 
+      margin: 1px 0 0; 
       font-size: 0.65rem; 
+      color: #926982; 
+      font-weight: 600;
+    }
+
+    .profile-birth { 
+      margin: 1px 0 0; 
+      font-size: 0.60rem; 
+      color: #a37f94; 
+    }
+
+    .profile-countdown { 
+      margin: 5px auto 0; 
+      display: inline-block; 
+      padding: 2px 6px; 
+      border-radius: 12px; 
+      background: linear-gradient(135deg, #ff8fa3, #ffb3c1); 
+      font-size: 0.58rem; 
       font-weight: 700; 
-      color: var(--rose); 
-      white-space: nowrap; 
-      overflow: hidden; 
+      color: #ffffff; 
+      box-shadow: 0 2px 6px rgba(255, 143, 163, 0.3);
+      width: 90%;
+      white-space: nowrap;
+      overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 100%;
     }
 
+    /* Days Counter Mini Box */
     .days-counter {
+      position: relative;
       text-align: center; 
-      padding: 18px 8px;
-      background: rgba(255, 255, 255, 0.9); 
-      border-radius: 24px;
-      box-shadow: var(--shadow); 
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(213, 95, 120, 0.14);
+      padding: 10px 2px;
+      background: linear-gradient(145deg, #ffffff, #fff0f3); 
+      border-radius: 18px;
+      box-shadow: 0 4px 15px rgba(213, 95, 120, 0.12); 
+      border: 1.5px solid #ffe3e8;
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
-    .anniversary-header { margin: 0; text-transform: uppercase; letter-spacing: 0.08em; color: var(--rose); font-weight: 700; font-size: 0.65rem; }
-    .anniversary-date { margin: 2px 0 6px; font-size: 0.75rem; color: var(--plum); font-weight: 600; }
-    .days-number { font-family: "Cormorant Garamond", Georgia, serif; font-size: 2.8rem; font-weight: 700; line-height: 1; color: var(--plum); margin: 0; }
-    .days-suffix { margin: 2px 0 0; font-size: 0.75rem; color: var(--muted); }
 
-    @media (max-width: 600px) {
-      .hero { gap: 6px !important; }
-      .days-number { font-size: 2.2rem; }
-      .avatar-wrap { width: 55px; height: 55px; }
-      .avatar { font-size: 1.3rem; }
+    .days-counter::before {
+      content: "💕";
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
+      background: #fff;
+      border-radius: 50%;
+      padding: 1px 4px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    .days-number {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(45deg, #d55f78, #f28d76);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 2px 0;
     }
 
     .duration-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 20px; }
@@ -414,22 +490,52 @@
     .duration-value { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; font-weight: 700; color: var(--plum); display: block; }
     .duration-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
 
+    /* Next Anniversary Card (တစ်ကြောင်းတည်း သေသပ်စွာ ပြသရန် ပြင်ဆင်ထားသော CSS) */
     .next-anniv-card {
       background: rgba(255, 255, 255, 0.92);
       border-radius: 24px;
-      padding: 14px 20px;
-      text-align: center;
+      padding: 12px 18px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(6px);
       border: 1px solid rgba(213, 95, 120, 0.2);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
       margin-bottom: 20px;
+      white-space: nowrap;
     }
-    .next-anniv-label { font-size: 0.85rem; font-weight: 700; color: var(--plum); text-transform: uppercase; letter-spacing: 0.05em; word-break: break-word; }
-    .next-anniv-value { font-size: 0.95rem; font-weight: 700; color: var(--rose); background: var(--blush); padding: 4px 14px; border-radius: 999px; white-space: nowrap; }
+    
+    .next-anniv-label { 
+      font-size: 0.8rem; 
+      font-weight: 700; 
+      color: var(--plum); 
+      text-transform: uppercase; 
+      letter-spacing: 0.03em; 
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .next-anniv-value { 
+      font-size: 0.85rem; 
+      font-weight: 700; 
+      color: var(--rose); 
+      background: var(--blush); 
+      padding: 5px 12px; 
+      border-radius: 999px; 
+      white-space: nowrap; 
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 400px) {
+      .next-anniv-card { padding: 10px 12px; }
+      .next-anniv-label { font-size: 0.72rem; }
+      .next-anniv-value { font-size: 0.78rem; padding: 4px 10px; }
+    }
 
     .widget-card { background: rgba(255,255,255,0.88); padding: 20px; border-radius: 24px; box-shadow: var(--shadow); backdrop-filter: blur(6px); margin-bottom: 20px; }
 
@@ -669,8 +775,9 @@
           <div class="duration-card"><span class="duration-value" id="duration-hms" style="font-size: 1.1rem; line-height: 1.8rem;">00:00:00</span><span class="duration-label">Time</span></div>
         </div>
 
+        <!-- Next Anniversary Card (တစ်ကြောင်းတည်း သေသပ်စွာ ပြသထားသည်) -->
         <div class="next-anniv-card">
-          <span class="next-anniv-label">🎉 Next Anniversary Countdown:</span>
+          <span class="next-anniv-label">🎉 Next Anniversary:</span>
           <span class="next-anniv-value" id="next-anniv-days">0 Days Left</span>
         </div>
 
@@ -1352,7 +1459,6 @@
       showToast(`Selected: ${winner}`, "🎯");
     }
 
-    // ✨ FIX 1: Move Memory to Secret Note (Preserve Photo)
     function lockToSecretNote(id) {
       const memIndex = appData.memories.findIndex(m => m.id === id);
       if (memIndex !== -1) {
@@ -1364,7 +1470,7 @@
           title: memToMove.title,
           content: memToMove.desc,
           date: memToMove.date,
-          photo: memToMove.photo || '' // <--- Photo preserved
+          photo: memToMove.photo || ''
         });
 
         appData.memories.splice(memIndex, 1);
@@ -1373,7 +1479,6 @@
       }
     }
 
-    // ✨ FIX 2: Move Secret Note back to Memories (Preserve Photo)
     function unlockToMemory(id) {
       const noteIndex = appData.notes.findIndex(n => n.id === id);
       if (noteIndex !== -1) {
@@ -1385,7 +1490,7 @@
           title: noteToMove.title,
           date: noteToMove.date,
           desc: noteToMove.content,
-          photo: noteToMove.photo || '' // <--- Photo preserved
+          photo: noteToMove.photo || ''
         });
 
         appData.notes.splice(noteIndex, 1);
