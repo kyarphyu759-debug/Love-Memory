@@ -1,1269 +1,1764 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>❤️ Love Memory </title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-body{
-min-height:100vh;
-background:linear-gradient(135deg,#ff758c,#ff7eb3);
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-color:white;
-overflow-x:hidden;
-}
-
-/* =========================
-   TOPBAR
-========================= */
-/* =========================
-   TOPBAR
-========================= */
-
-.topbar{
-height:20px;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(10px);
-border-bottom:1px solid rgba(255,255,255,.1);
-}
-
-/* Hide old elements */
-
-.logo{
-display:none;
-}
-
-.edit-btn{
-display:none;
-}
-
-.edit-btn:hover{
-transform:scale(1.05);
-}
-
-/* =========================
-   MAIN CONTAINER
-========================= */
-.container{
-padding:20px 15px 220px;
-}
-
-/* =========================
-   PROFILE ROW
-========================= */
-
-.cards-row{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:10px;
-margin-top:15px;
-}
-
-.profile-card{
-width:38%;
-max-width:180px;
-
-padding:18px 10px;
-
-text-align:center;
-
-border-radius:28px;
-
-background:rgba(255,255,255,.15);
-
-backdrop-filter:blur(15px);
-
-border:1px solid rgba(255,255,255,.15);
-
-box-shadow:0 10px 25px rgba(0,0,0,.15);
-
-cursor:pointer;
-}
-
-.profile-card img{
-width:90px;
-height:90px;
-
-border-radius:50%;
-
-object-fit:cover;
-
-border:4px solid white;
-
-margin-bottom:10px;
-}
-
-.profile-card h2{
-font-size:22px;
-margin-bottom:5px;
-}
-
-.profile-card p{
-font-size:16px;
-opacity:.95;
-}
-
-/* =========================
-   ANNIVERSARY CARD
-========================= */
-
-.anniversary-card{
-
-width:30%;
-
-max-width:170px;
-
-min-width:130px;
-
-padding:18px 8px;
-
-overflow:hidden;
-
-text-align:center;
-
-border-radius:28px;
-
-background:rgba(255,255,255,.15);
-
-backdrop-filter:blur(15px);
-
-border:1px solid rgba(255,255,255,.15);
-
-box-shadow:0 10px 25px rgba(0,0,0,.15);
-}
-
-#ann{
-font-size:14px;
-margin-bottom:10px;
-}
-
-#days{
-font-size:36px;
-font-weight:700;
-line-height:1;
-margin-bottom:10px;
-word-break:break-word;
-}
-
-/* =========================
-   HEART ANIMATION
-========================= */
-
-.floating-heart{
-font-size:30px;
-margin-bottom:10px;
-animation:heartBeat 1.5s infinite;
-}
-
-@keyframes heartBeat{
-
-0%{
-transform:scale(1);
-}
-
-50%{
-transform:scale(1.2);
-}
-
-100%{
-transform:scale(1);
-}
-
-}
-
-/* =========================
-   LOVE MESSAGE
-========================= */
-
-.love-message{
-
-width:92%;
-
-margin:35px auto;
-
-padding:20px;
-
-text-align:center;
-
-line-height:1.8;
-
-font-size:16px;
-
-background:rgba(255,255,255,.12);
-
-backdrop-filter:blur(12px);
-
-border-radius:25px;
-
-border:1px solid rgba(255,255,255,.18);
-
-box-shadow:0 8px 20px rgba(0,0,0,.12);
-}
-
-/* =========================
-   LIVE COUNTER
-========================= */
-
-.love-counter{
-
-position:fixed;
-
-bottom:10px;
-left:10px;
-right:10px;
-
-display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
-gap:8px;
-
-z-index:50;
-}
-
-.love-box{
-
-background:rgba(255,255,255,.18);
-
-backdrop-filter:blur(15px);
-
-border:1px solid rgba(255,255,255,.2);
-
-border-radius:16px;
-
-padding:8px;
-
-min-height:85px;
-
-text-align:center;
-
-box-shadow:0 8px 20px rgba(0,0,0,.15);
-}
-
-.love-icon{
-font-size:20px;
-margin-bottom:5px;
-animation:heartBeat 1.5s infinite;
-}
-
-.love-box div:nth-child(2){
-font-size:18px;
-font-weight:700;
-}
-
-.love-box span{
-font-size:11px;
-opacity:.9;
-}
-/* =========================
-   MODALS
-========================= */
-
-.modal{
-display:none;
-
-position:fixed;
-top:0;
-left:0;
-right:0;
-bottom:0;
-
-background:rgba(0,0,0,.55);
-
-backdrop-filter:blur(5px);
-
-justify-content:center;
-align-items:center;
-
-z-index:999;
-}
-
-.box{
-
-width:90%;
-max-width:340px;
-
-padding:25px;
-
-background:rgba(255,255,255,.15);
-
-backdrop-filter:blur(25px);
-
-border-radius:28px;
-
-border:1px solid rgba(255,255,255,.2);
-
-text-align:center;
-}
-
-.box h3{
-margin-bottom:20px;
-font-size:22px;
-}
-
-.box button{
-
-width:100%;
-
-padding:14px;
-
-margin-top:12px;
-
-border:none;
-
-border-radius:15px;
-
-background:linear-gradient(
-135deg,
-#ff5f8f,
-#ff7eb3
-);
-
-color:white;
-
-font-size:15px;
-font-weight:600;
-
-cursor:pointer;
-}
-
-.sheet{
-
-width:90%;
-max-width:380px;
-
-background:white;
-
-color:#333;
-
-padding:25px;
-
-border-radius:25px;
-}
-
-.sheet h2{
-margin-bottom:15px;
-}
-
-.sheet input,
-.sheet select{
-
-width:100%;
-
-padding:13px;
-
-margin-top:10px;
-
-border-radius:12px;
-
-border:1px solid #ddd;
-
-outline:none;
-}
-
-.sheet button{
-
-width:100%;
-
-padding:13px;
-
-margin-top:12px;
-
-border:none;
-
-border-radius:12px;
-
-background:#ff5f8f;
-
-color:white;
-
-font-weight:600;
-}
-
-/* =========================
-   COLOR PICKER
-========================= */
-
-.colors{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px;
-margin-top:15px;
-}
-
-.color{
-height:50px;
-border-radius:14px;
-cursor:pointer;
-border:2px solid rgba(255,255,255,.4);
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:480px){
-
-.logo{
-font-size:22px;
-}
-
-.profile-card img{
-width:80px;
-height:80px;
-}
-
-.profile-card h2{
-font-size:18px;
-}
-
-.profile-card p{
-font-size:15px;
-}
-
-#days{
-font-size:32px;
-}
-
-.love-message{
-font-size:15px;
-}
-
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Memory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
-
 <body>
-
-<!-- =========================
-     TOP BAR
-========================= -->
-
-<header class="topbar"></header>
-
-<!-- =========================
-     MAIN CONTENT
-========================= -->
-
-<div class="container">
-
-<div class="cards-row">
-
-<!-- Partner 1 -->
-
-<div
-class="profile-card"
-onclick="editProfile(1)">
-
-<div class="floating-heart">
-💖
-</div>
-
-<img
-id="img1"
-src="https://via.placeholder.com/150">
-
-<h2 id="name1">
-Partner 1
-</h2>
-
-<p id="info1">
-Male • 20
-</p>
-
-</div>
-
-<!-- Anniversary -->
-
-<div class="anniversary-card">
-
-<div class="floating-heart">
-❤️
-</div>
-
-<div id="ann">
-2022-05-05
-</div>
-
-<h1 id="days">
-0
-</h1>
-
-<span>
-Days Together
-</span>
-
-</div>
-
-<!-- Partner 2 -->
-
-<div
-class="profile-card"
-onclick="editProfile(2)">
-
-<div class="floating-heart">
-💖
-</div>
-
-<img
-id="img2"
-src="https://via.placeholder.com/150">
-
-<h2 id="name2">
-Partner 2
-</h2>
-
-<p id="info2">
-Female • 18
-</p>
-
-</div>
-
-</div>
-
-<!-- LOVE MESSAGE -->
-
-<div class="love-message">
-
-💖 Through every smile, every challenge,
-and every dream, my heart will always
-belong to you. 💖
-
-</div>
-
-</div>
-
-<!-- COUNTER -->
-
-<div class="love-counter">
-
-<div class="love-box">
-<div class="love-icon">❤️</div>
-<div id="years">0</div>
-<span>Years</span>
-</div>
-
-<div class="love-box">
-<div class="love-icon">💖</div>
-<div id="months">0</div>
-<span>Months</span>
-</div>
-
-<div class="love-box">
-<div class="love-icon">💕</div>
-<div id="weeks">0</div>
-<span>Weeks</span>
-</div>
-
-<div class="love-box">
-<div class="love-icon">💝</div>
-<div id="daysLive">0</div>
-<span>Days</span>
-</div>
-
-<div class="love-box">
-<div class="love-icon">💓</div>
-<div id="hours">0</div>
-<span>Hours</span>
-</div>
-
-<div class="love-box">
-<div class="love-icon">💗</div>
-<div id="minutes">0</div>
-<span>Minutes</span>
-</div>
-
-</div>
-<!-- PROFILE EDIT MODAL -->
-
-<div class="modal" id="profileModal">
-
-<div class="sheet">
-
-<h2>❤️ Edit Profile</h2>
-
-<input
-type="text"
-id="pname"
-placeholder="Enter Name">
-
-<select id="pgender">
-
-<option value="Male">Male</option>
-
-<option value="Female">Female</option>
-
-</select>
-
-<input
-type="date"
-id="pdob">
-
-<input
-type="file"
-id="pimg"
-accept="image/*">
-
-<button onclick="saveProfile()">
-💾 Save
-</button>
-
-<button onclick="closeProfile()">
-❌ Cancel
-</button>
-
-</div>
-
-</div>
-
-<!-- SETTINGS MENU -->
-
-<div class="modal" id="menu">
-
-<div class="box">
-
-<h3>❤️ Love Settings</h3>
-
-<button onclick="openAnniversaryEditor()">
-📅 Change Anniversary Date
-</button>
-
-<button onclick="openBackgroundPicker()">
-🎨 Change Background
-</button>
-
-<button onclick="closeMenu()">
-❌ Close
-</button>
-
-</div>
-
-</div>
-
-<!-- ANNIVERSARY MODAL -->
-
-<div class="modal" id="annModal">
-
-<div class="box">
-
-<h3>❤️ Change Anniversary Date</h3>
-
-<input
-type="date"
-id="annInput"
-style="
-width:100%;
-padding:12px;
-border:none;
-border-radius:12px;
-margin-top:10px;
-">
-
-<button onclick="saveAnniversary()">
-💖 Save Date
-</button>
-
-</div>
-
-</div>
-
-<!-- BACKGROUND MODAL -->
-
-<div class="modal" id="bgModal">
-
-<div class="box">
-
-<h3>🎨 Choose Background</h3>
-
-<div class="colors">
-  
-
-<div class="color"
-style="background:#ff758c"
-onclick="setColor('#ff758c')">
-</div>
-
-<div class="color"
-style="background:#ff5e62"
-onclick="setColor('#ff5e62')">
-</div>
-
-<div class="color"
-style="background:#8e44ad"
-onclick="setColor('#8e44ad')">
-</div>
-
-<div class="color"
-style="background:#3498db"
-onclick="setColor('#3498db')">
-</div>
-
-<div class="color"
-style="background:#16a085"
-onclick="setColor('#16a085')">
-</div>
-
-<div class="color"
-style="background:#e67e22"
-onclick="setColor('#e67e22')">
-</div>
-
-<div class="color"
-style="background:#2c3e50"
-onclick="setColor('#2c3e50')">
-</div>
-
-<div class="color"
-style="background:#e84393"
-onclick="setColor('#e84393')">
-</div>
-
-</div>
-
-<button onclick="uploadBackground()">
-🖼 Use My Photo
-</button>
-
-<button onclick="closeBackgroundPicker()">
-❌ Close
-</button>
-
-</div>
-
-</div>
-
-<script>
-  let current = 1;
-
-let data = JSON.parse(
-localStorage.getItem("love_memory") ||
-'{"anniversary":"2022-05-05"}'
-);
-
-/* =========================
-   AGE CALCULATOR
-========================= */
-
-function getAge(dob){
-
-if(!dob) return "";
-
-let birth = new Date(dob);
-let today = new Date();
-
-let age =
-today.getFullYear() -
-birth.getFullYear();
-
-let monthDiff =
-today.getMonth() -
-birth.getMonth();
-
-if(
-monthDiff < 0 ||
-(
-monthDiff === 0 &&
-today.getDate() <
-birth.getDate()
-)
-){
-age--;
-}
-
-return age;
-
-}
-
-/* =========================
-   RENDER UI
-========================= */
-
-function render(){
-
-name1.textContent =
-data.name1 || "Partner 1";
-
-name2.textContent =
-data.name2 || "Partner 2";
-
-info1.textContent =
-(data.gender1 || "Male") +
-" • " +
-(getAge(data.dob1) || "0");
-
-info2.textContent =
-(data.gender2 || "Female") +
-" • " +
-(getAge(data.dob2) || "0");
-
-if(data.img1){
-img1.src = data.img1;
-}
-
-if(data.img2){
-img2.src = data.img2;
-}
-
-ann.textContent =
-data.anniversary;
-
-days.textContent =
-Math.floor(
-(
-Date.now() -
-new Date(data.anniversary)
-)
-/
-86400000
-);
-
-}
-
-/* =========================
-   SAVE DATA
-========================= */
-
-function save(){
-
-localStorage.setItem(
-"love_memory",
-JSON.stringify(data)
-);
-
-render();
-
-}
-
-/* =========================
-   PROFILE EDIT
-========================= */
-
-function editProfile(number){
-
-current = number;
-
-profileModal.style.display =
-"flex";
-
-pname.value =
-data["name"+number] || "";
-
-pgender.value =
-data["gender"+number] ||
-"Male";
-
-pdob.value =
-data["dob"+number] || "";
-
-}
-
-function closeProfile(){
-
-profileModal.style.display =
-"none";
-
-}
-
-function saveProfile(){
-
-data["name"+current] =
-pname.value;
-
-data["gender"+current] =
-pgender.value;
-
-data["dob"+current] =
-pdob.value;
-
-let file =
-pimg.files[0];
-
-if(file){
-
-let reader =
-new FileReader();
-
-reader.onload =
-function(e){
-
-data["img"+current] =
-e.target.result;
-
-save();
-
-};
-
-reader.readAsDataURL(file);
-
-}else{
-
-save();
-
-}
-
-closeProfile();
-
-}
-/* =========================
-   SETTINGS MENU
-========================= */
-
-function openMenu(){
-
-menu.style.display =
-"flex";
-
-}
-
-function closeMenu(){
-
-menu.style.display =
-"none";
-
-}
-
-/* =========================
-   ANNIVERSARY DATE
-========================= */
-
-function openAnniversaryEditor(){
-
-closeMenu();
-
-annModal.style.display =
-"flex";
-
-annInput.value =
-data.anniversary;
-
-}
-
-function saveAnniversary(){
-
-if(!annInput.value) return;
-
-data.anniversary =
-annInput.value;
-
-save();
-
-annModal.style.display =
-"none";
-
-}
-
-/* =========================
-   BACKGROUND PICKER
-========================= */
-
-function openBackgroundPicker(){
-
-closeMenu();
-
-bgModal.style.display =
-"flex";
-
-}
-
-function closeBackgroundPicker(){
-
-bgModal.style.display =
-"none";
-
-}
-
-function setColor(color){
-
-document.body.style.background =
-color;
-
-document.body.style.backgroundImage =
-"none";
-
-localStorage.setItem(
-"bg_color",
-color
-);
-
-localStorage.removeItem(
-"bg_image"
-);
-
-closeBackgroundPicker();
-
-}
-
-/* =========================
-   UPLOAD BACKGROUND PHOTO
-========================= */
-
-function uploadBackground(){
-
-let input =
-document.createElement("input");
-
-input.type = "file";
-
-input.accept = "image/*";
-
-input.onchange =
-function(e){
-
-let file =
-e.target.files[0];
-
-if(!file) return;
-
-let reader =
-new FileReader();
-
-reader.onload =
-function(ev){
-
-document.body.style.backgroundImage =
-`url(${ev.target.result})`;
-
-document.body.style.backgroundSize =
-"cover";
-
-document.body.style.backgroundPosition =
-"center center";
-
-document.body.style.backgroundRepeat =
-"no-repeat";
-
-document.body.style.backgroundAttachment =
-"fixed";
-
-localStorage.setItem(
-"bg_image",
-ev.target.result
-);
-
-localStorage.removeItem(
-"bg_color"
-);
-
-closeBackgroundPicker();
-
-};
-
-reader.readAsDataURL(file);
-
-};
-
-input.click();
-
-}
-
-/* =========================
-   RESTORE BACKGROUND
-========================= */
-
-let savedColor =
-localStorage.getItem("bg_color");
-
-if(savedColor){
-
-document.body.style.background =
-savedColor;
-
-}
-
-let savedImage =
-localStorage.getItem("bg_image");
-
-if(savedImage){
-
-document.body.style.backgroundImage =
-`url(${savedImage})`;
-
-document.body.style.backgroundSize =
-"cover";
-
-document.body.style.backgroundPosition =
-"center center";
-
-document.body.style.backgroundRepeat =
-"no-repeat";
-
-document.body.style.backgroundAttachment =
-"fixed";
-
-}
-/* =========================
-   LIVE COUNTER
-========================= */
-
-function updateCounter(){
-
-let start =
-new Date(data.anniversary);
-
-let now =
-new Date();
-
-/* Years Months Days */
-
-let years =
-now.getFullYear() -
-start.getFullYear();
-
-let months =
-now.getMonth() -
-start.getMonth();
-
-let days =
-now.getDate() -
-start.getDate();
-
-if(days < 0){
-
-months--;
-
-let lastMonthDays =
-new Date(
-now.getFullYear(),
-now.getMonth(),
-0
-).getDate();
-
-days += lastMonthDays;
-
-}
-
-if(months < 0){
-
-years--;
-
-months += 12;
-
-}
-
-/* Weeks + Remaining Days */
-
-let weeks =
-Math.floor(days / 7);
-
-let remainDays =
-days % 7;
-
-/* Time */
-
-let diff =
-now - start;
-
-let hours =
-Math.floor(
-diff / (1000*60*60)
-) % 24;
-
-let minutes =
-Math.floor(
-diff / (1000*60)
-) % 60;
-
-let seconds =
-Math.floor(
-diff / 1000
-) % 60;
-
-/* Update UI */
-
-document.getElementById("years").textContent =
-years;
-
-document.getElementById("months").textContent =
-months;
-
-document.getElementById("weeks").textContent =
-weeks;
-
-document.getElementById("daysLive").textContent =
-remainDays;
-
-document.getElementById("hours").textContent =
-hours;
-
-document.getElementById("minutes").textContent =
-minutes;
-
-/* Optional seconds */
-
-let sec =
-document.getElementById("seconds");
-
-if(sec){
-
-sec.textContent =
-seconds;
-
-}
-
-}
-
-/* =========================
-   CLOSE MODALS
-========================= */
-
-window.onclick = function(e){
-
-/* =========================
-   OPEN SETTINGS BY TAP BACKGROUND
-========================= */
-
-document.body.addEventListener(
-"click",
-function(e){
-
-if(
-!e.target.closest(".profile-card") &&
-!e.target.closest(".anniversary-card") &&
-!e.target.closest(".love-box") &&
-!e.target.closest(".modal")
-){
-
-openMenu();
-
-}
-
-}
-);
-
-};
-
-/* =========================
-   START APP
-========================= */
-
-render();
-
-updateCounter();
-
-setInterval(
-updateCounter,
-1000
-);
-
-</script>
-
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --ink: #3a2933;
+      --muted: #7d6577;
+      --paper: #fff4f2;
+      --rose: #d55f78;
+      --coral: #f28d76;
+      --gold: #f1c45d;
+      --mint: #7db39f;
+      --sky: #8aa7d4;
+      --plum: #744c6b;
+      --blush: #fff1ee;
+      --line: rgba(58, 41, 51, 0.12);
+      --shadow: 0 24px 60px rgba(58, 41, 51, 0.14);
+      --radius: 20px;
+      --topbar-h: 64px;
+      --bottomnav-h: 72px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--ink);
+      background: #ffe9ee;
+      position: relative;
+      overflow-x: hidden;
+      padding-bottom: 90px;
+    }
+
+    h1, h2, h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    /* Modal Overlay Background */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 380px;
+      text-align: center;
+      transform: translateY(-20px);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+
+    .modal-card h3 { margin-top: 0; color: #ff5e7e; font-size: 1.2rem; }
+    .modal-card p { color: #666; font-size: 0.9rem; margin-bottom: 15px; }
+
+    .modal-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid #ffe0e6;
+      border-radius: 10px;
+      outline: none;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+
+    .modal-input:focus { border-color: #ff5e7e; }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      justify-content: flex-end;
+    }
+
+    .modal-buttons button {
+      padding: 8px 18px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.1s, opacity 0.2s;
+    }
+
+    .modal-buttons button:active { transform: scale(0.95); }
+    .btn-cancel { background: #f1f1f1; color: #666; }
+    .btn-ok { background: #ff5e7e; color: white; box-shadow: 0 4px 10px rgba(255, 94, 126, 0.3); }
+
+    .app-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      transition: background 0.3s ease;
+    }
+
+    .app-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transition: background 0.5s ease;
+      z-index: -1;
+    }
+
+    body.theme-rose .app-bg:not(.has-custom-bg)::before { background: linear-gradient(160deg, #ffe5e9 0%, #ffd8db 36%, #f9dbf0 100%); }
+    body.theme-ocean .app-bg:not(.has-custom-bg)::before { background: linear-gradient(160deg, #d7f0ff 0%, #c4e6ff 38%, #eaf5ff 100%); }
+    body.theme-mint .app-bg:not(.has-custom-bg)::before { background: linear-gradient(160deg, #dff7f1 0%, #c7f0e8 38%, #e9faf6 100%); }
+    body.theme-wine .app-bg:not(.has-custom-bg)::before { background: linear-gradient(160deg, #f7d5db 0%, #f2b2bf 38%, #f9e1e5 100%); }
+    body.theme-dusk .app-bg:not(.has-custom-bg)::before { background: linear-gradient(160deg, #2b2b48 0%, #1e1b38 38%, #3e325c 100%); }
+    body.theme-blush .app-bg:not(.has-custom-bg)::before { background: linear-gradient(160deg, #ffe8ef 0%, #ffd7e3 38%, #fff2f6 100%); }
+
+    .app-bg.has-custom-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(2px);
+    }
+
+    .decor-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .decor-item {
+      position: absolute;
+      bottom: -50px;
+      font-size: 1.8rem;
+      user-select: none;
+      opacity: 0.6;
+      animation: floatUp 12s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: linear-gradient(135deg, var(--rose), var(--coral)); color: #fff; box-shadow: 0 8px 20px rgba(213, 95, 120, 0.2); }
+    .btn-ghost { background: rgba(255,255,255,0.85); border: 1px solid var(--line); color: var(--ink); }
+    .btn-ghost:hover { background: #fff; }
+    .btn-danger { background: linear-gradient(135deg, #ff4d4f, #d9363e); color: #fff; box-shadow: 0 8px 20px rgba(255, 77, 79, 0.2); }
+    .btn-sm { padding: 6px 12px; font-size: 0.8rem; }
+
+    .app { min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* Top Bar with Three Dots Menu */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background: rgba(255, 250, 246, 0.85);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--plum); font-size: 1.1rem; }
+    .brand-icon { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--blush); color: var(--rose); }
+
+    .top-menu-container { position: relative; }
+    .top-menu-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--plum);
+      cursor: pointer;
+      padding: 4px 10px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .top-menu-btn:hover { background: var(--blush); }
+
+    .top-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 40px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      min-width: 170px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      z-index: 1000;
+      border: 1px solid var(--line);
+    }
+
+    .top-dropdown.show { display: block; }
+
+    .top-dropdown button {
+      width: 100%;
+      padding: 12px 16px;
+      border: none;
+      background: transparent;
+      text-align: left;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--plum);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .top-dropdown button:last-child { border-bottom: none; }
+    .top-dropdown button:hover { background: var(--blush); color: var(--rose); }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--line);
+      padding: 8px 12px;
+      display: flex;
+      gap: 8px;
+      justify-content: flex-start;
+      overflow-x: auto;
+      z-index: 1000;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    .bottom-nav::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      border: none;
+      background: transparent;
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 0.85rem;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .tab-btn.active { background: var(--blush); color: var(--rose); box-shadow: 0 2px 8px rgba(213, 95, 120, 0.15); }
+
+    .mood-bar-container {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      padding: 8px 20px;
+    }
+    .mood-bar-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+    .mood-title { font-size: 0.85rem; font-weight: 700; color: var(--plum); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+    .mood-selector { display: flex; gap: 12px; align-items: center; }
+    .mood-btn { border: none; background: transparent; font-size: 1.4rem; cursor: pointer; transition: transform 0.2s, opacity 0.2s; opacity: 0.4; padding: 0; line-height: 1; }
+    .mood-btn:hover { transform: scale(1.2); opacity: 0.8; }
+    .mood-btn.active { opacity: 1; transform: scale(1.3); }
+
+    .view-pager { flex: 1; max-width: 1100px; width: 100%; margin: 0 auto; padding: 20px; position: relative; }
+    .page-tab { display: none; }
+    .page-tab.active { display: block; }
+
+    .hero {
+      display: grid !important;
+      grid-template-columns: 1fr 1.1fr 1fr !important;
+      gap: 10px !important;
+      align-items: center;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .profile-card {
+      position: relative; 
+      text-align: center; 
+      padding: 16px 8px;
+      background: rgba(255, 255, 255, 0.88); 
+      border-radius: 20px;
+      box-shadow: var(--shadow); 
+      border: 1px solid rgba(255,255,255,0.8);
+      cursor: pointer; 
+      backdrop-filter: blur(6px); 
+      transition: transform 0.2s ease;
+      min-width: 0;
+    }
+    .profile-card:hover { transform: translateY(-4px); }
+    .avatar-wrap { position: relative; width: 70px; height: 70px; margin: 0 auto 8px; }
+    .avatar {
+      width: 100%; height: 100%; border-radius: 50%;
+      background: linear-gradient(135deg, #fff1f4 0%, #ffd9de 100%);
+      border: 3px solid #fff; box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      display: grid; place-items: center; font-size: 1.6rem; color: var(--plum);
+      overflow: hidden; background-size: cover; background-position: center;
+    }
+
+    .profile-name { 
+      margin: 0; 
+      font-size: 0.95rem; 
+      color: var(--plum); 
+      font-weight: 700; 
+      white-space: nowrap; 
+      overflow: hidden; 
+      text-overflow: ellipsis; 
+      max-width: 100%;
+    }
+    .profile-meta { margin: 2px 0 0; font-size: 0.75rem; color: var(--muted); }
+    .profile-birth { margin: 2px 0 0; font-size: 0.7rem; color: var(--muted); }
+    .profile-countdown { 
+      margin: 6px auto 0; 
+      display: block; 
+      padding: 3px 6px; 
+      border-radius: 999px; 
+      background: rgba(242, 152, 156, 0.15); 
+      font-size: 0.65rem; 
+      font-weight: 700; 
+      color: var(--rose); 
+      white-space: nowrap; 
+      overflow: hidden; 
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .days-counter {
+      text-align: center; 
+      padding: 18px 8px;
+      background: rgba(255, 255, 255, 0.9); 
+      border-radius: 24px;
+      box-shadow: var(--shadow); 
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(213, 95, 120, 0.14);
+      min-width: 0;
+    }
+    .anniversary-header { margin: 0; text-transform: uppercase; letter-spacing: 0.08em; color: var(--rose); font-weight: 700; font-size: 0.65rem; }
+    .anniversary-date { margin: 2px 0 6px; font-size: 0.75rem; color: var(--plum); font-weight: 600; }
+    .days-number { font-family: "Cormorant Garamond", Georgia, serif; font-size: 2.8rem; font-weight: 700; line-height: 1; color: var(--plum); margin: 0; }
+    .days-suffix { margin: 2px 0 0; font-size: 0.75rem; color: var(--muted); }
+
+    @media (max-width: 600px) {
+      .hero { gap: 6px !important; }
+      .days-number { font-size: 2.2rem; }
+      .avatar-wrap { width: 55px; height: 55px; }
+      .avatar { font-size: 1.3rem; }
+    }
+
+    .duration-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 20px; }
+    .duration-card { background: rgba(255,255,255,0.88); padding: 12px 6px; border-radius: 16px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.04); backdrop-filter: blur(6px); }
+    .duration-value { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; font-weight: 700; color: var(--plum); display: block; }
+    .duration-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
+
+    .next-anniv-card {
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 24px;
+      padding: 14px 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(213, 95, 120, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .next-anniv-label { font-size: 0.85rem; font-weight: 700; color: var(--plum); text-transform: uppercase; letter-spacing: 0.05em; word-break: break-word; }
+    .next-anniv-value { font-size: 0.95rem; font-weight: 700; color: var(--rose); background: var(--blush); padding: 4px 14px; border-radius: 999px; white-space: nowrap; }
+
+    .widget-card { background: rgba(255,255,255,0.88); padding: 20px; border-radius: 24px; box-shadow: var(--shadow); backdrop-filter: blur(6px); margin-bottom: 20px; }
+
+    .section-title-wrap { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    
+    .memory-list { display: grid; gap: 16px; }
+    
+    .memory-card-item { 
+      background: rgba(255,255,255,0.92); 
+      border-radius: 20px; 
+      padding: 16px; 
+      display: flex; 
+      gap: 14px; 
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05); 
+      align-items: center; 
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .memory-img { 
+      width: 75px; 
+      height: 75px; 
+      border-radius: 16px; 
+      object-fit: cover; 
+      background: var(--blush); 
+      flex-shrink: 0; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--rose);
+    }
+
+    .memory-info { 
+      flex: 1; 
+      min-width: 0;
+    }
+
+    .memory-info .date { 
+      font-size: 0.72rem; 
+      color: var(--rose); 
+      font-weight: 700; 
+      text-transform: uppercase; 
+    }
+
+    .memory-info h4 { 
+      margin: 2px 0 4px; 
+      font-size: 1rem; 
+      color: var(--plum); 
+      word-break: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    .memory-info p { 
+      margin: 0; 
+      font-size: 0.85rem; 
+      color: var(--muted); 
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      line-height: 1.3;
+    }
+
+    .memory-actions { 
+      display: flex; 
+      gap: 6px; 
+      flex-shrink: 0;
+      align-items: center;
+    }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+    .gallery-item { aspect-ratio: 1; border-radius: 16px; overflow: hidden; position: relative; box-shadow: 0 6px 15px rgba(0,0,0,0.08); background: var(--blush); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+    .gallery-item:hover img { transform: scale(1.08); }
+    .gallery-caption { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); display: flex; flex-direction: column; justify-content: flex-end; padding: 10px; color: #fff; opacity: 0; transition: opacity 0.2s ease; }
+    .gallery-item:hover .gallery-caption { opacity: 1; }
+    .gallery-caption h5 { margin: 0; font-size: 0.85rem; }
+    .gallery-caption span { font-size: 0.7rem; opacity: 0.8; }
+
+    .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+    .calendar-day-head { font-weight: 700; font-size: 0.8rem; color: var(--plum); padding: 4px; }
+    .calendar-day { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255,255,255,0.6); border-radius: 12px; font-size: 0.85rem; font-weight: 600; cursor: pointer; position: relative; transition: all 0.2s ease; }
+    .calendar-day.empty { background: transparent; cursor: default; }
+    
+    .calendar-day.has-memory {
+      background: linear-gradient(135deg, var(--rose), var(--coral));
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 6px 15px rgba(213, 95, 120, 0.4);
+      transform: scale(1.03);
+    }
+    .calendar-day.has-memory::after {
+      content: "❤️";
+      font-size: 0.6rem;
+      position: absolute;
+      bottom: 2px;
+    }
+
+    .diary-lock-screen { text-align: center; padding: 30px 20px; }
+    .pin-input-group { display: flex; justify-content: center; gap: 8px; margin: 15px 0; }
+    .pin-input-group input { width: 45px; height: 50px; text-align: center; font-size: 1.4rem; font-weight: 700; border-radius: 10px; border: 1px solid var(--line); }
+
+    .wishlist-form { display: flex; gap: 10px; margin-bottom: 16px; }
+    .wishlist-form input { flex: 1; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; outline: none; }
+    .wishlist-items { list-style: none; padding: 0; margin: 0; }
+    .wishlist-item { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: rgba(255,255,255,0.9); border-radius: 14px; margin-bottom: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+    .wishlist-item.done span { text-decoration: line-through; opacity: 0.6; }
+
+    .wheel-container { position: relative; width: 280px; height: 280px; margin: 0 auto 20px; }
+    .wheel-pointer { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 2rem; z-index: 10; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+    #wheel-canvas { width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 10px 25px rgba(0,0,0,0.15); cursor: pointer; }
+
+    .toast-banner {
+      position: fixed;
+      bottom: 85px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(58, 41, 51, 0.92);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+      opacity: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toast-banner.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .modal-close { position: absolute; top: 16px; right: 16px; border: none; background: none; font-size: 1.4rem; cursor: pointer; color: var(--muted); }
+    .form-group { margin-bottom: 14px; text-align: left; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; font-family: inherit; font-size: 0.95rem; }
+
+    .music-widget { position: fixed; bottom: 80px; right: 20px; z-index: 50; background: rgba(255,255,255,0.9); border: 1px solid var(--line); backdrop-filter: blur(8px); padding: 8px 14px; border-radius: 999px; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+
+    .theme-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
+    .theme-swatch { aspect-ratio: 1.8; border-radius: 14px; border: 2px solid transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 0.8rem; font-weight: 700; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+    .theme-swatch.active { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(213, 95, 120, 0.4); }
+  </style>
+
+  <div class="app-bg" id="app-bg"></div>
+  <div class="decor-container" id="decor-container"></div>
+
+  <!-- Custom Toast Notification Box -->
+  <div class="toast-banner" id="toast-banner">
+    <span id="toast-icon">✨</span>
+    <span id="toast-msg">Notification Message</span>
+  </div>
+
+  <div class="app">
+    <!-- Top Bar with Three Dots Menu -->
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand-icon">♥</span>
+        <span>Love Memory</span>
+      </div>
+
+      <div class="top-menu-container">
+        <button id="topMenuBtn" class="top-menu-btn" aria-label="Menu">⋮</button>
+        <div id="topDropdown" class="top-dropdown">
+          <button onclick="switchTab('home')">🏠 Home</button>
+          <button onclick="switchTab('memories')">📖 Memories</button>
+          <button onclick="switchTab('gallery')">🖼️ Gallery</button>
+          <button onclick="switchTab('calendar')">📅 Calendar</button>
+          <button onclick="switchTab('diary')">🔒 Secret Notes</button>
+          <button onclick="switchTab('wheel')">🎯 Spin Wheel</button>
+          <button onclick="switchTab('wishlist')">⭐ Wishlist</button>
+          <button onclick="switchTab('settings')">⚙️ Settings</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mood Header Bar -->
+    <div class="mood-bar-container">
+      <div class="mood-bar-content">
+        <div class="mood-title">✨ <span>Today Feeling:</span></div>
+        <div class="mood-selector">
+          <button class="mood-btn" onclick="selectMood('🥰')" id="mood-🥰" title="Loving">🥰</button>
+          <button class="mood-btn" onclick="selectMood('😊')" id="mood-😊" title="Happy">😊</button>
+          <button class="mood-btn" onclick="selectMood('🥺')" id="mood-🥺" title="Missing You">🥺</button>
+          <button class="mood-btn" onclick="selectMood('❤️')" id="mood-❤️" title="In Love">❤️</button>
+          <button class="mood-btn" onclick="selectMood('😴')" id="mood-😴" title="Sleepy">😴</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main View Pager -->
+    <main class="view-pager">
+
+      <!-- TAB 1: HOME -->
+      <section class="page-tab active" id="tab-home">
+        
+        <div class="hero">
+          <div class="profile-card" onclick="openPartnerModal('a')" title="Click to edit profile">
+            <div class="avatar-wrap">
+              <div class="avatar" id="avatar-a">A</div>
+            </div>
+            <h2 class="profile-name" id="partner-a-name">Aung</h2>
+            <p class="profile-meta"><span id="partner-a-age">27</span> • <span id="partner-a-gender">Male</span></p>
+            <p class="profile-birth" id="partner-a-birthdate">Born 12 Jan 1996</p>
+            <p class="profile-countdown" id="partner-a-birthday-count">Birthday in 120 days</p>
+          </div>
+
+          <div class="days-counter">
+            <p class="anniversary-header">Anniversary</p>
+            <p class="anniversary-date" id="anniversary-date-text">12 Jan 2021</p>
+            <p class="days-number" id="days-count">0</p>
+            <p class="days-suffix">days together</p>
+          </div>
+
+          <div class="profile-card" onclick="openPartnerModal('b')" title="Click to edit profile">
+            <div class="avatar-wrap">
+              <div class="avatar" id="avatar-b">M</div>
+            </div>
+            <h2 class="profile-name" id="partner-b-name">May</h2>
+            <p class="profile-meta"><span id="partner-b-age">25</span> • <span id="partner-b-gender">Female</span></p>
+            <p class="profile-birth" id="partner-b-birthdate">Born 24 Apr 1998</p>
+            <p class="profile-countdown" id="partner-b-birthday-count">Birthday in 60 days</p>
+          </div>
+        </div>
+
+        <div class="duration-grid">
+          <div class="duration-card"><span class="duration-value" id="duration-years">0</span><span class="duration-label">Years</span></div>
+          <div class="duration-card"><span class="duration-value" id="duration-months">0</span><span class="duration-label">Months</span></div>
+          <div class="duration-card"><span class="duration-value" id="duration-weeks">0</span><span class="duration-label">Weeks</span></div>
+          <div class="duration-card"><span class="duration-value" id="duration-days">0</span><span class="duration-label">Days</span></div>
+          <div class="duration-card"><span class="duration-value" id="duration-hms" style="font-size: 1.1rem; line-height: 1.8rem;">00:00:00</span><span class="duration-label">Time</span></div>
+        </div>
+
+        <div class="next-anniv-card">
+          <span class="next-anniv-label">🎉 Next Anniversary Countdown:</span>
+          <span class="next-anniv-value" id="next-anniv-days">0 Days Left</span>
+        </div>
+
+      </section>
+
+      <!-- TAB 2: MEMORIES -->
+      <section class="page-tab" id="tab-memories">
+        <div class="section-title-wrap">
+          <div>
+            <h2 style="margin:0; color:var(--plum);">Our Precious Memories</h2>
+            <p style="margin:4px 0 0; color:var(--muted); font-size:0.9rem;">Record special moments together</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="openAddMemoryModal()">+ Add Memory</button>
+        </div>
+        <div class="memory-list" id="memory-list"></div>
+      </section>
+
+      <!-- TAB 3: PHOTO GALLERY -->
+      <section class="page-tab" id="tab-gallery">
+        <div class="section-title-wrap">
+          <div>
+            <h2 style="margin:0; color:var(--plum);">Photo Gallery</h2>
+            <p style="margin:4px 0 0; color:var(--muted); font-size:0.9rem;">Visual album of your sweet memories</p>
+          </div>
+        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </section>
+
+      <!-- TAB 4: LOVE CALENDAR -->
+      <section class="page-tab" id="tab-calendar">
+        <div class="widget-card">
+          <div class="calendar-header">
+            <button class="btn btn-ghost btn-sm" onclick="changeCalendarMonth(-1)">◀ Prev</button>
+            <h3 id="calendar-month-year" style="margin:0; color:var(--plum);">Month Year</h3>
+            <button class="btn btn-ghost btn-sm" onclick="changeCalendarMonth(1)">Next ▶</button>
+          </div>
+          <div class="calendar-grid" id="calendar-grid"></div>
+        </div>
+        <div id="calendar-memory-detail"></div>
+      </section>
+
+      <!-- TAB 5: SECRET DIARY / NOTES -->
+      <section class="page-tab" id="tab-diary">
+        <div class="widget-card" id="diary-lock-card">
+          <div class="diary-lock-screen">
+            <div style="font-size:3rem; margin-bottom:10px;">🔒</div>
+            <h3 style="margin:0; color:var(--plum);">Secret Notes</h3>
+            <p style="color:var(--muted); font-size:0.88rem; margin:6px 0 15px;">Enter PIN code to unlock (Default PIN: 1234)</p>
+            <div class="pin-input-group">
+              <input type="password" maxlength="1" class="pin-digit" />
+              <input type="password" maxlength="1" class="pin-digit" />
+              <input type="password" maxlength="1" class="pin-digit" />
+              <input type="password" maxlength="1" class="pin-digit" />
+            </div>
+            <button class="btn btn-primary" onclick="unlockDiary()">Unlock Note</button>
+          </div>
+        </div>
+
+        <div class="widget-card" id="diary-content-card" style="display:none;">
+          <div class="section-title-wrap">
+            <h3 style="margin:0; color:var(--plum);">🔒 Secret Love Notes</h3>
+            <div>
+              <button class="btn btn-primary btn-sm" onclick="openAddNoteModal()">+ New Note</button>
+            </div>
+          </div>
+          <div id="notes-list" style="display:grid; gap:12px;"></div>
+        </div>
+      </section>
+
+      <!-- TAB 6: SPIN THE WHEEL -->
+      <section class="page-tab" id="tab-wheel">
+        <div class="section-title-wrap">
+          <div>
+            <h2 style="margin:0; color:var(--plum);">Romantic Decision Maker 🎯</h2>
+            <p style="margin:4px 0 0; color:var(--muted); font-size:0.9rem;">ဒီနေ့ ဘာစားမလဲ/ ဘာလုပ်မလဲ မဝေခွဲနိုင်ရင် ဒိုင်ခွက်လှည့်လိုက်ပါ!</p>
+          </div>
+        </div>
+
+        <div class="widget-card" style="text-align:center;">
+          <p style="margin:0 0 12px; color:var(--muted); font-size:0.85rem;">💡 Spin Wheel ပေါ်ရှိ စာသားများကို Click လုပ်၍ တိုက်ရိုက်ပြင်/ဖျက်နိုင်ပါသည် (အလယ်စက်ဝိုင်းကိုနှိပ်၍ Choice အသစ်ထည့်ပါ)</p>
+          <div class="wheel-container">
+            <div class="wheel-pointer">🔻</div>
+            <canvas id="wheel-canvas" width="300" height="300" onclick="handleWheelClick(event)"></canvas>
+          </div>
+
+          <button class="btn btn-primary" style="font-size:1.1rem; padding: 12px 32px;" id="spin-btn" onclick="spinWheel()">Spin Wheel 🎲</button>
+          <h3 id="wheel-result" style="color:var(--rose); margin-top:15px; min-height:30px;"></h3>
+        </div>
+      </section>
+
+      <!-- TAB 7: WISHLIST -->
+      <section class="page-tab" id="tab-wishlist">
+        <div class="section-title-wrap">
+          <div>
+            <h2 style="margin:0; color:var(--plum);">Bucket List</h2>
+            <p style="margin:4px 0 0; color:var(--muted); font-size:0.9rem;">Things we want to do together</p>
+          </div>
+        </div>
+        <div class="widget-card">
+          <div class="wishlist-form">
+            <input type="text" id="wishlist-input" placeholder="Add new goal (e.g., Go to Beach together)..." />
+            <button class="btn btn-primary btn-sm" onclick="addWishlistItem()">Add</button>
+          </div>
+          <ul class="wishlist-items" id="wishlist-items"></ul>
+        </div>
+      </section>
+
+      <!-- TAB 8: SETTINGS -->
+      <section class="page-tab" id="tab-settings">
+        <h2 style="margin:0 0 16px; color:var(--plum);">Settings & Customization</h2>
+
+        <div class="widget-card">
+          <h3>Anniversary Date</h3>
+          <div class="form-group" style="margin-top:10px;">
+            <input type="date" id="settings-anniversary-date" onchange="updateAnniversaryDate(this.value)" />
+          </div>
+        </div>
+
+        <div class="widget-card">
+          <h3>Secret Notes PIN Code</h3>
+          <div class="form-group" style="margin-top:10px;">
+            <input type="password" id="settings-pin" placeholder="Enter new 4-digit PIN" maxlength="4" />
+            <button class="btn btn-primary btn-sm" style="margin-top:8px;" onclick="updatePinCode()">Update PIN</button>
+          </div>
+        </div>
+
+        <div class="widget-card">
+          <h3>App Theme & Decoration</h3>
+          <div class="theme-grid">
+            <button class="theme-swatch" style="background:#d55f78" onclick="setTheme('rose')"><span>❤️ Hearts</span></button>
+            <button class="theme-swatch" style="background:#4a82cf" onclick="setTheme('ocean')"><span>✨ Stars</span></button>
+            <button class="theme-swatch" style="background:#529c81" onclick="setTheme('mint')"><span>☁️ Clouds</span></button>
+            <button class="theme-swatch" style="background:#744c6b" onclick="setTheme('wine')"><span>🌸 Flowers</span></button>
+            <button class="theme-swatch" style="background:#2b2b48" onclick="setTheme('dusk')"><span>🌙 Night</span></button>
+            <button class="theme-swatch" style="background:#f28d76" onclick="setTheme('blush')"><span>🦋 Butterfly</span></button>
+          </div>
+
+          <div class="form-group" style="margin-top:20px;">
+            <label>Custom Background Image</label>
+            <input type="file" accept="image/*" onchange="uploadCustomBg(event)" />
+            <button class="btn btn-ghost btn-sm" style="margin-top: 8px;" onclick="removeCustomBg()">Reset Background</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Music Player -->
+  <div class="music-widget">
+    <button id="bg-music-btn" style="border:none; background:none; cursor:pointer; font-size:1.1rem;" onclick="toggleAudio()">🎵 Play Music</button>
+    <audio id="bg-audio" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112199.mp3"></audio>
+  </div>
+
+  <!-- MODAL: Partner Profile Edit -->
+  <div class="modal-overlay" id="partner-modal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('partner-modal')">×</button>
+      <h2 id="partner-modal-title">Edit Partner Profile</h2>
+      <form id="partner-form" onsubmit="savePartnerForm(event)">
+        <div class="form-group"><label>Name</label><input type="text" id="partner-name-input" required /></div>
+        <div class="form-group">
+          <label>Gender</label>
+          <select id="partner-gender-input"><option>Male</option><option>Female</option><option>Other</option></select>
+        </div>
+        <div class="form-group"><label>Birthday</label><input type="date" id="partner-birthdate-input" required /></div>
+        <div class="form-group"><label>Avatar Photo</label><input type="file" accept="image/*" id="partner-avatar-input" /></div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Save Profile</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Add / Edit Memory -->
+  <div class="modal-overlay" id="memory-modal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('memory-modal')">×</button>
+      <h2 id="memory-modal-title">Add New Memory</h2>
+      <form onsubmit="saveMemoryForm(event)">
+        <input type="hidden" id="memory-id-input" />
+        <div class="form-group"><label>Title</label><input type="text" id="memory-title-input" placeholder="e.g. Our First Date" required /></div>
+        <div class="form-group"><label>Date</label><input type="date" id="memory-date-input" required /></div>
+        <div class="form-group"><label>Description</label><textarea id="memory-desc-input" rows="3" placeholder="Write something about this day..."></textarea></div>
+        <div class="form-group"><label>Photo</label><input type="file" accept="image/*" id="memory-photo-input" /></div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Save Memory</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Add Secret Note -->
+  <div class="modal-overlay" id="note-modal">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal('note-modal')">×</button>
+      <h2>Add Secret Note</h2>
+      <form onsubmit="saveNoteForm(event)">
+        <div class="form-group"><label>Title</label><input type="text" id="note-title-input" placeholder="Note Title" required /></div>
+        <div class="form-group"><label>Date</label><input type="date" id="note-date-input" required /></div>
+        <div class="form-group"><label>Content</label><textarea id="note-content-input" rows="4" placeholder="Write your secret note here..." required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Save Note</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: Custom Delete Confirmation Box -->
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="modal-card" style="text-align: center; max-width: 380px;">
+      <div style="font-size: 3rem; margin-bottom: 8px;">🗑️</div>
+      <h2 style="margin-bottom: 8px;">Delete Memory?</h2>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 20px;">ဒီအမှတ်တရလေးကို ဖျက်ပစ်ဖို့ သေချာပြီလားခင်ဗျာ?</p>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button class="btn btn-ghost" style="flex: 1;" onclick="closeModal('confirm-modal')">မဖျက်တော့ပါ</button>
+        <button class="btn btn-danger" style="flex: 1;" id="confirm-delete-btn">ဖျက်မည်</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DEFAULT_DATA = {
+      anniversaryDate: '2022-05-05',
+      theme: 'rose',
+      customBg: '',
+      pinCode: '1234',
+      partnerA: { name: 'Aung Myo Wai', gender: 'Male', birthdate: '2003-11-10', avatar: '' },
+      partnerB: { name: 'Mya Kyar Phyu', gender: 'Female', birthdate: '2003-09-04', avatar: '' },
+      todayMood: '🥰',
+      memories: [
+        { id: 1, title: 'The Day We Met', date: '2022-05-05', desc: 'A beautiful beginning of our story.', photo: '' }
+      ],
+      notes: [
+        { id: 1, title: 'Hotel Date', content: 'We are so happy for our first time of hotel sex date.', date: '2026-07-22', photo: '' }
+      ],
+      wishlist: [
+        { id: 1, text: 'Watch Sunset together', done: false },
+        { id: 2, text: 'Go on a road trip', done: true }
+      ],
+      wheelOptions: ['Hotpot 🍲', 'Mala Xiang Guo 🥘', 'Movie Night 🍿', 'BBQ 🍢', 'Bubble Tea 🧋', 'Cafe Date ☕']
+    };
+
+    let appData = JSON.parse(localStorage.getItem('love_memory_data')) || DEFAULT_DATA;
+    if(!appData.wheelOptions) appData.wheelOptions = DEFAULT_DATA.wheelOptions;
+
+    let activeEditingPartner = 'a';
+    let memoryToDeleteId = null;
+    let currentCalendarDate = new Date();
+    
+    // Wheel Variables
+    let currentAngle = 0;
+    let isSpinning = false;
+    const wheelColors = ['#f28d76', '#d55f78', '#f1c45d', '#7db39f', '#8aa7d4', '#744c6b'];
+
+    const THEME_DECORS = {
+      rose: ['❤️', '💖', '💕', '💗', '❤️'],
+      ocean: ['✨', '⭐', '🌟', '💫', '✨'],
+      mint: ['☁️', '🌤️', '☁️', '🎈', '☁️'],
+      wine: ['🌸', '🌺', '🌷', '🌹', '🌸'],
+      dusk: ['🌙', '✨', '⭐', '🌌', '✨'],
+      blush: ['🦋', '🌸', '✨', '🦋', '🌸']
+    };
+
+    // 1. Top Bar Three Dots Dropdown Handlers
+    const topMenuBtn = document.getElementById('topMenuBtn');
+    const topDropdown = document.getElementById('topDropdown');
+
+    topMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      topDropdown.classList.toggle('show');
+    });
+
+    window.addEventListener('click', () => {
+      if (topDropdown.classList.contains('show')) {
+        topDropdown.classList.remove('show');
+      }
+    });
+
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.classList.remove('active');
+    }
+
+    function showToast(message, icon = "✨") {
+      const toast = document.getElementById('toast-banner');
+      document.getElementById('toast-msg').textContent = message;
+      document.getElementById('toast-icon').textContent = icon;
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+
+    function saveData() {
+      localStorage.setItem('love_memory_data', JSON.stringify(appData));
+      renderApp();
+    }
+
+    function diffDays(from, to) {
+      return Math.max(0, Math.floor((to - from) / (1000 * 60 * 60 * 24)));
+    }
+
+    function calculateAge(dobStr) {
+      if (!dobStr) return '';
+      const birth = new Date(dobStr);
+      const today = new Date();
+      let age = today.getFullYear() - birth.getFullYear();
+      const m = today.getMonth() - birth.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+      return age >= 0 ? age : '';
+    }
+
+    function daysUntilBirthday(dobStr) {
+      if (!dobStr) return '--';
+      const birth = new Date(dobStr);
+      const today = new Date();
+      const nextBday = new Date(today.getFullYear(), birth.getMonth(), birth.getDate());
+      if (nextBday < today) nextBday.setFullYear(nextBday.getFullYear() + 1);
+      return diffDays(today, nextBday);
+    }
+
+    function daysUntilNextAnniversary(annivStr) {
+      if (!annivStr) return '--';
+      const anniv = new Date(annivStr);
+      const today = new Date();
+      const nextAnniv = new Date(today.getFullYear(), anniv.getMonth(), anniv.getDate());
+      if (nextAnniv < today) nextAnniv.setFullYear(nextAnniv.getFullYear() + 1);
+      return diffDays(today, nextAnniv);
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+
+    function switchTab(tab) {
+      if (tab !== 'diary') {
+        lockDiarySilent();
+      }
+
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      document.querySelectorAll('.page-tab').forEach(p => p.classList.toggle('active', p.id === `tab-${tab}`));
+
+      if (topDropdown.classList.contains('show')) {
+        topDropdown.classList.remove('show');
+      }
+
+      if (tab === 'wheel') {
+        drawWheel();
+      }
+    }
+
+    document.querySelectorAll('[data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchTab(btn.dataset.tab);
+      });
+    });
+
+    function setTheme(themeName) {
+      appData.theme = themeName;
+      saveData();
+      showToast("Theme updated successfully!", "🎨");
+    }
+
+    function uploadCustomBg(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (evt) => { 
+          appData.customBg = evt.target.result; 
+          saveData(); 
+          showToast("Custom background updated!", "🖼️");
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function removeCustomBg() {
+      appData.customBg = '';
+      saveData();
+      showToast("Background reset to default", "🔄");
+    }
+
+    function generateDecorations(theme) {
+      const container = document.getElementById('decor-container');
+      container.innerHTML = '';
+      const symbols = THEME_DECORS[theme] || THEME_DECORS.rose;
+
+      for (let i = 0; i < 15; i++) {
+        const item = document.createElement('div');
+        item.className = 'decor-item';
+        item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        item.style.left = `${Math.random() * 100}%`;
+        item.style.animationDuration = `${8 + Math.random() * 10}s`;
+        item.style.animationDelay = `${Math.random() * 8}s`;
+        item.style.fontSize = `${1.2 + Math.random() * 1.5}rem`;
+        container.appendChild(item);
+      }
+    }
+
+    function renderApp() {
+      const bgEl = document.getElementById('app-bg');
+      if (appData.customBg) {
+        bgEl.style.backgroundImage = `url("${appData.customBg}")`;
+        bgEl.classList.add('has-custom-bg');
+      } else {
+        bgEl.style.backgroundImage = '';
+        bgEl.classList.remove('has-custom-bg');
+      }
+
+      document.body.className = `theme-${appData.theme || 'rose'}`;
+
+      document.querySelectorAll('.theme-swatch').forEach(swatch => {
+        swatch.classList.toggle('active', swatch.getAttribute('onclick').includes(`'${appData.theme}'`));
+      });
+
+      generateDecorations(appData.theme || 'rose');
+
+      const pA = appData.partnerA;
+      document.getElementById('partner-a-name').textContent = pA.name;
+      document.getElementById('partner-a-age').textContent = calculateAge(pA.birthdate);
+      document.getElementById('partner-a-gender').textContent = pA.gender;
+      document.getElementById('partner-a-birthdate').textContent = `Born ${formatDate(pA.birthdate)}`;
+      document.getElementById('partner-a-birthday-count').textContent = `Birthday in ${daysUntilBirthday(pA.birthdate)} days`;
+      const avatarA = document.getElementById('avatar-a');
+      if (pA.avatar) { avatarA.style.backgroundImage = `url("${pA.avatar}")`; avatarA.textContent = ''; }
+      else { avatarA.style.backgroundImage = ''; avatarA.textContent = pA.name.charAt(0).toUpperCase(); }
+
+      const pB = appData.partnerB;
+      document.getElementById('partner-b-name').textContent = pB.name;
+      document.getElementById('partner-b-age').textContent = calculateAge(pB.birthdate);
+      document.getElementById('partner-b-gender').textContent = pB.gender;
+      document.getElementById('partner-b-birthdate').textContent = `Born ${formatDate(pB.birthdate)}`;
+      document.getElementById('partner-b-birthday-count').textContent = `Birthday in ${daysUntilBirthday(pB.birthdate)} days`;
+      const avatarB = document.getElementById('avatar-b');
+      if (pB.avatar) { avatarB.style.backgroundImage = `url("${pB.avatar}")`; avatarB.textContent = ''; }
+      else { avatarB.style.backgroundImage = ''; avatarB.textContent = pB.name.charAt(0).toUpperCase(); }
+
+      const annivDate = new Date(appData.anniversaryDate);
+      document.getElementById('anniversary-date-text').textContent = formatDate(appData.anniversaryDate);
+      document.getElementById('settings-anniversary-date').value = appData.anniversaryDate;
+      document.getElementById('days-count').textContent = diffDays(annivDate, new Date()).toLocaleString();
+      document.getElementById('next-anniv-days').textContent = `${daysUntilNextAnniversary(appData.anniversaryDate)} Days Left`;
+
+      document.querySelectorAll('.mood-btn').forEach(btn => btn.classList.remove('active'));
+      if (appData.todayMood) {
+        const activeMoodBtn = document.getElementById(`mood-${appData.todayMood}`);
+        if (activeMoodBtn) activeMoodBtn.classList.add('active');
+      }
+
+      const memList = document.getElementById('memory-list');
+      memList.innerHTML = '';
+      if (!appData.memories || appData.memories.length === 0) {
+        memList.innerHTML = `<p style="text-align:center; color:var(--muted); padding:20px;">No memories added yet.</p>`;
+      } else {
+        appData.memories.forEach(m => {
+          memList.innerHTML += `
+            <div class="memory-card-item">
+              ${m.photo ? `<img src="${m.photo}" class="memory-img" />` : `<div class="memory-img">♥</div>`}
+              <div class="memory-info">
+                <div class="date">${formatDate(m.date)}</div>
+                <h4>${m.title}</h4>
+                <p>${m.desc}</p>
+              </div>
+              <div class="memory-actions">
+                <button class="btn btn-ghost btn-sm" onclick="lockToSecretNote(${m.id})" title="Move to Secret Notes">🔒</button>
+                <button class="btn btn-ghost btn-sm" onclick="editMemory(${m.id})" title="Edit">✏️</button>
+                <button class="btn btn-ghost btn-sm" onclick="promptDeleteMemory(${m.id})" title="Delete">🗑️</button>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      renderGallery();
+      renderCalendar();
+      renderDiaryNotes();
+      drawWheel();
+
+      const wishList = document.getElementById('wishlist-items');
+      wishList.innerHTML = '';
+      (appData.wishlist || []).forEach(w => {
+        wishList.innerHTML += `
+          <li class="wishlist-item ${w.done ? 'done' : ''}">
+            <span onclick="toggleWishlist(${w.id})" style="cursor:pointer;">${w.done ? '✅' : '⚪'} ${w.text}</span>
+            <button class="btn btn-ghost btn-sm" onclick="deleteWishlist(${w.id})">🗑️</button>
+          </li>
+        `;
+      });
+
+      updateLiveClock();
+    }
+
+    let currentWheelModalCallback = null;
+
+    function showCustomInputModal(title, text, defaultValue, onConfirm) {
+      let modalOverlay = document.getElementById('wheel-input-modal');
+      
+      if (!modalOverlay) {
+        modalOverlay = document.createElement('div');
+        modalOverlay.id = 'wheel-input-modal';
+        modalOverlay.className = 'modal-overlay';
+        modalOverlay.innerHTML = `
+          <div class="modal-card">
+            <h3 id="wheel-modal-title">Edit Option</h3>
+            <p id="wheel-modal-sub" style="font-size: 0.85rem; color: var(--muted); margin-bottom: 12px;"></p>
+            <input type="text" id="wheel-modal-input" class="modal-input" placeholder="Type here..." />
+            <div class="modal-buttons">
+              <button class="btn-cancel" onclick="closeWheelModal()">Cancel</button>
+              <button class="btn-ok" onclick="confirmWheelModal()">Save</button>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(modalOverlay);
+      }
+
+      document.getElementById('wheel-modal-title').textContent = title;
+      document.getElementById('wheel-modal-sub').textContent = text || '';
+      const inputEl = document.getElementById('wheel-modal-input');
+      inputEl.value = defaultValue || '';
+      
+      currentWheelModalCallback = onConfirm;
+      openModal('wheel-input-modal');
+      inputEl.focus();
+    }
+
+    function closeWheelModal() {
+      closeModal('wheel-input-modal');
+      currentWheelModalCallback = null;
+    }
+
+    function confirmWheelModal() {
+      const inputEl = document.getElementById('wheel-modal-input');
+      const val = inputEl.value;
+      if (currentWheelModalCallback) {
+        currentWheelModalCallback(val);
+      }
+      closeWheelModal();
+    }
+
+    function drawWheel() {
+      const canvas = document.getElementById('wheel-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const options = appData.wheelOptions;
+      if (options.length === 0) return;
+
+      const numOptions = options.length;
+      const arcSize = (2 * Math.PI) / numOptions;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      options.forEach((opt, idx) => {
+        const angle = currentAngle + idx * arcSize;
+        ctx.beginPath();
+        ctx.fillStyle = wheelColors[idx % wheelColors.length];
+        ctx.moveTo(150, 150);
+        ctx.arc(150, 150, 150, angle, angle + arcSize);
+        ctx.lineTo(150, 150);
+        ctx.fill();
+
+        ctx.save();
+        ctx.fillStyle = "#ffffff";
+        ctx.translate(150, 150);
+        ctx.rotate(angle + arcSize / 2);
+        ctx.textAlign = "right";
+        ctx.font = "bold 13px DM Sans, sans-serif";
+        ctx.fillText(opt, 135, 5);
+        ctx.restore();
+      });
+
+      ctx.beginPath();
+      ctx.arc(150, 150, 32, 0, 2 * Math.PI);
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = "var(--rose)";
+      ctx.stroke();
+
+      ctx.fillStyle = "var(--rose)";
+      ctx.textAlign = "center";
+      ctx.font = "bold 11px DM Sans, sans-serif";
+      ctx.fillText("+ Add Choice", 150, 154);
+    }
+
+    function handleWheelClick(event) {
+      if (isSpinning) return;
+      const canvas = document.getElementById('wheel-canvas');
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+
+      const x = (event.clientX - rect.left) * scaleX - 150;
+      const y = (event.clientY - rect.top) * scaleY - 150;
+      const dist = Math.sqrt(x * x + y * y);
+
+      if (dist <= 35) {
+        showCustomInputModal("Add New Option", "Enter a new choice for the wheel:", "", (newChoice) => {
+          if (newChoice && newChoice.trim()) {
+            appData.wheelOptions.push(newChoice.trim());
+            saveData();
+            showToast("Option added to Wheel!", "🎯");
+          }
+        });
+        return;
+      }
+
+      if (dist <= 150) {
+        let clickAngle = Math.atan2(y, x);
+        if (clickAngle < 0) clickAngle += 2 * Math.PI;
+
+        let normalized = (clickAngle - currentAngle) % (2 * Math.PI);
+        if (normalized < 0) normalized += 2 * Math.PI;
+
+        const numOptions = appData.wheelOptions.length;
+        const arcSize = (2 * Math.PI) / numOptions;
+        const selectedIndex = Math.floor(normalized / arcSize);
+
+        const currentText = appData.wheelOptions[selectedIndex];
+        
+        showCustomInputModal("Edit Choice", `Edit option or leave empty to delete:`, currentText, (updatedText) => {
+          if (updatedText === null) return;
+
+          if (updatedText.trim() === '') {
+            if (appData.wheelOptions.length <= 2) {
+              showToast("Minimum 2 options required!", "⚠️");
+              return;
+            }
+            appData.wheelOptions.splice(selectedIndex, 1);
+            saveData();
+            showToast("Option deleted!", "🗑️");
+          } else {
+            appData.wheelOptions[selectedIndex] = updatedText.trim();
+            saveData();
+            showToast("Option updated!", "✏️");
+          }
+        });
+      }
+    }
+
+    function spinWheel() {
+      if (isSpinning || appData.wheelOptions.length === 0) return;
+      isSpinning = true;
+      document.getElementById('wheel-result').textContent = "Spinning...";
+
+      const spinAngle = Math.random() * 2000 + 2000; 
+      const startAngle = currentAngle;
+      const startTime = performance.now();
+      const duration = 4000; 
+
+      function animateSpin(currentTime) {
+        const elapsed = currentTime - startTime;
+        if (elapsed < duration) {
+          const progress = elapsed / duration;
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          currentAngle = startAngle + easeOut * (spinAngle * Math.PI / 180);
+          drawWheel();
+          requestAnimationFrame(animateSpin);
+        } else {
+          currentAngle = (startAngle + spinAngle * Math.PI / 180) % (2 * Math.PI);
+          drawWheel();
+          isSpinning = false;
+          calculateWheelWinner();
+        }
+      }
+      requestAnimationFrame(animateSpin);
+    }
+
+    function calculateWheelWinner() {
+      const options = appData.wheelOptions;
+      const numOptions = options.length;
+      const arcSize = (2 * Math.PI) / numOptions;
+      
+      let normalizedAngle = (1.5 * Math.PI - currentAngle) % (2 * Math.PI);
+      if (normalizedAngle < 0) normalizedAngle += 2 * Math.PI;
+
+      const winningIndex = Math.floor(normalizedAngle / arcSize);
+      const winner = options[winningIndex];
+
+      document.getElementById('wheel-result').textContent = `✨ Result: ${winner} ✨`;
+      showToast(`Selected: ${winner}`, "🎯");
+    }
+
+    // ✨ FIX 1: Move Memory to Secret Note (Preserve Photo)
+    function lockToSecretNote(id) {
+      const memIndex = appData.memories.findIndex(m => m.id === id);
+      if (memIndex !== -1) {
+        const memToMove = appData.memories[memIndex];
+        
+        if (!appData.notes) appData.notes = [];
+        appData.notes.unshift({
+          id: Date.now(),
+          title: memToMove.title,
+          content: memToMove.desc,
+          date: memToMove.date,
+          photo: memToMove.photo || '' // <--- Photo preserved
+        });
+
+        appData.memories.splice(memIndex, 1);
+        saveData();
+        showToast("Moved to Secret Notes!", "🔒");
+      }
+    }
+
+    // ✨ FIX 2: Move Secret Note back to Memories (Preserve Photo)
+    function unlockToMemory(id) {
+      const noteIndex = appData.notes.findIndex(n => n.id === id);
+      if (noteIndex !== -1) {
+        const noteToMove = appData.notes[noteIndex];
+        
+        if (!appData.memories) appData.memories = [];
+        appData.memories.unshift({
+          id: Date.now(),
+          title: noteToMove.title,
+          date: noteToMove.date,
+          desc: noteToMove.content,
+          photo: noteToMove.photo || '' // <--- Photo preserved
+        });
+
+        appData.notes.splice(noteIndex, 1);
+        saveData();
+        showToast("Moved to Memories Tab!", "🔓");
+      }
+    }
+
+    function renderGallery() {
+      const gallery = document.getElementById('gallery-grid');
+      gallery.innerHTML = '';
+      const photos = appData.memories.filter(m => m.photo);
+      if (photos.length === 0) {
+        gallery.innerHTML = `<p style="grid-column:1/-1; text-align:center; color:var(--muted); padding:20px;">No memory photos added yet. Upload photos in Memories tab!</p>`;
+        return;
+      }
+      photos.forEach(p => {
+        gallery.innerHTML += `
+          <div class="gallery-item">
+            <img src="${p.photo}" alt="${p.title}" />
+            <div class="gallery-caption">
+              <h5>${p.title}</h5>
+              <span>${formatDate(p.date)}</span>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderCalendar() {
+      const year = currentCalendarDate.getFullYear();
+      const month = currentCalendarDate.getMonth();
+
+      document.getElementById('calendar-month-year').textContent = currentCalendarDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      const grid = document.getElementById('calendar-grid');
+      grid.innerHTML = '';
+
+      ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(d => {
+        grid.innerHTML += `<div class="calendar-day-head">${d}</div>`;
+      });
+
+      for (let i = 0; i < firstDay; i++) {
+        grid.innerHTML += `<div class="calendar-day empty"></div>`;
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const hasMemory = appData.memories.some(m => m.date === dateStr);
+        grid.innerHTML += `
+          <div class="calendar-day ${hasMemory ? 'has-memory' : ''}" onclick="showCalendarMemory('${dateStr}')">
+            ${day}
+          </div>
+        `;
+      }
+    }
+
+    function changeCalendarMonth(offset) {
+      currentCalendarDate.setMonth(currentCalendarDate.getMonth() + offset);
+      renderCalendar();
+    }
+
+    function showCalendarMemory(dateStr) {
+      const detailContainer = document.getElementById('calendar-memory-detail');
+      const mems = appData.memories.filter(m => m.date === dateStr);
+      if (mems.length === 0) {
+        detailContainer.innerHTML = `<p style="text-align:center; color:var(--muted); margin-top:15px;">No memories recorded on ${formatDate(dateStr)}</p>`;
+        return;
+      }
+      detailContainer.innerHTML = mems.map(m => `
+        <div class="widget-card" style="margin-top:15px; border-left: 4px solid var(--rose);">
+          <h4 style="margin:0 0 6px; color:var(--rose);">${m.title}</h4>
+          <p style="margin:0; font-size:0.9rem; color:var(--ink);">${m.desc}</p>
+        </div>
+      `).join('');
+    }
+
+    const pinInputs = document.querySelectorAll('.pin-digit');
+    pinInputs.forEach((inp, idx) => {
+      inp.addEventListener('input', () => {
+        if (inp.value && idx < pinInputs.length - 1) pinInputs[idx + 1].focus();
+      });
+    });
+
+    function unlockDiary() {
+      let enteredPin = Array.from(pinInputs).map(i => i.value).join('');
+      if (enteredPin === (appData.pinCode || '1234')) {
+        document.getElementById('diary-lock-card').style.display = 'none';
+        document.getElementById('diary-content-card').style.display = 'block';
+        showToast("Secret Diary Unlocked!", "🔓");
+      } else {
+        showToast("Incorrect PIN Code!", "❌");
+        pinInputs.forEach(i => i.value = '');
+        pinInputs[0].focus();
+      }
+    }
+
+    function lockDiarySilent() {
+      document.getElementById('diary-lock-card').style.display = 'block';
+      document.getElementById('diary-content-card').style.display = 'none';
+      pinInputs.forEach(i => i.value = '');
+    }
+
+    function updatePinCode() {
+      const newPin = document.getElementById('settings-pin').value;
+      if (newPin && newPin.length === 4) {
+        appData.pinCode = newPin;
+        saveData();
+        showToast("PIN code updated successfully!", "🔑");
+        document.getElementById('settings-pin').value = '';
+      } else {
+        showToast("Please enter a 4-digit PIN!", "⚠️");
+      }
+    }
+
+    function renderDiaryNotes() {
+      const container = document.getElementById('notes-list');
+      if (!container) return;
+      container.innerHTML = '';
+      if (!appData.notes || appData.notes.length === 0) {
+        container.innerHTML = `<p style="text-align:center; color:var(--muted); padding:10px;">No secret notes written yet.</p>`;
+        return;
+      }
+      appData.notes.forEach(n => {
+        container.innerHTML += `
+          <div style="background:rgba(255,255,255,0.8); padding:14px 18px; border-radius:16px; position:relative;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <h4 style="margin:0; color:var(--plum);">${n.title}</h4>
+              <span style="font-size:0.75rem; color:var(--rose);">${formatDate(n.date)}</span>
+            </div>
+            <p style="margin:0; font-size:0.9rem; color:var(--ink);">${n.content}</p>
+            
+            <div style="position:absolute; bottom:10px; right:10px; display:flex; gap:6px;">
+              <button class="btn btn-ghost btn-sm" onclick="unlockToMemory(${n.id})" title="Move to Memories">Unlock 🔓</button>
+              <button class="btn btn-ghost btn-sm" onclick="deleteNote(${n.id})" title="Delete">🗑️</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function openAddNoteModal() {
+      document.getElementById('note-title-input').value = '';
+      document.getElementById('note-date-input').value = new Date().toISOString().split('T')[0];
+      document.getElementById('note-content-input').value = '';
+      openModal('note-modal');
+    }
+
+    function saveNoteForm(e) {
+      e.preventDefault();
+      const title = document.getElementById('note-title-input').value;
+      const date = document.getElementById('note-date-input').value;
+      const content = document.getElementById('note-content-input').value;
+
+      if (!appData.notes) appData.notes = [];
+      appData.notes.unshift({
+        id: Date.now(),
+        title,
+        date,
+        content,
+        photo: ''
+      });
+
+      saveData();
+      closeModal('note-modal');
+      showToast("Secret note saved!", "📝");
+    }
+
+    function deleteNote(id) {
+      appData.notes = appData.notes.filter(n => n.id !== id);
+      saveData();
+      showToast("Note deleted!", "🗑️");
+    }
+
+    function updateLiveClock() {
+      const start = new Date(appData.anniversaryDate);
+      const now = new Date();
+      let years = now.getFullYear() - start.getFullYear();
+      let months = now.getMonth() - start.getMonth();
+      let days = now.getDate() - start.getDate();
+      let hours = now.getHours() - start.getHours();
+      let minutes = now.getMinutes() - start.getMinutes();
+      let seconds = now.getSeconds() - start.getSeconds();
+
+      if (seconds < 0) { seconds += 60; minutes--; }
+      if (minutes < 0) { minutes += 60; hours--; }
+      if (hours < 0) { hours += 24; days--; }
+      if (days < 0) {
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+        days += prevMonth;
+        months--;
+      }
+      if (months < 0) { months += 12; years--; }
+
+      document.getElementById('duration-years').textContent = Math.max(0, years);
+      document.getElementById('duration-months').textContent = Math.max(0, months);
+      document.getElementById('duration-weeks').textContent = Math.max(0, Math.floor(days / 7));
+      document.getElementById('duration-days').textContent = Math.max(0, days % 7);
+
+      const pad = n => String(n).padStart(2, '0');
+      document.getElementById('duration-hms').textContent = `${pad(Math.max(0, hours))}:${pad(Math.max(0, minutes))}:${pad(Math.max(0, seconds))}`;
+    }
+    setInterval(updateLiveClock, 1000);
+
+    function openPartnerModal(partnerKey) {
+      activeEditingPartner = partnerKey;
+      const p = partnerKey === 'a' ? appData.partnerA : appData.partnerB;
+      document.getElementById('partner-modal-title').textContent = `Edit ${p.name}'s Profile`;
+      document.getElementById('partner-name-input').value = p.name;
+      document.getElementById('partner-gender-input').value = p.gender;
+      document.getElementById('partner-birthdate-input').value = p.birthdate;
+      document.getElementById('partner-avatar-input').value = '';
+      openModal('partner-modal');
+    }
+
+    function savePartnerForm(e) {
+      e.preventDefault();
+      const p = activeEditingPartner === 'a' ? appData.partnerA : appData.partnerB;
+      p.name = document.getElementById('partner-name-input').value;
+      p.gender = document.getElementById('partner-gender-input').value;
+      p.birthdate = document.getElementById('partner-birthdate-input').value;
+
+      const avatarFile = document.getElementById('partner-avatar-input').files[0];
+      if (avatarFile) {
+        const reader = new FileReader();
+        reader.onload = (evt) => { 
+          p.avatar = evt.target.result; 
+          saveData(); 
+          closeModal('partner-modal'); 
+          showToast("Profile updated!", "👤"); 
+        };
+        reader.readAsDataURL(avatarFile);
+      } else {
+        saveData();
+        closeModal('partner-modal');
+        showToast("Profile updated!", "👤");
+      }
+    }
+
+    function updateAnniversaryDate(val) {
+      if (val) { 
+        appData.anniversaryDate = val; 
+        saveData(); 
+        showToast("Anniversary date updated!", "💖");
+      }
+    }
+
+    function selectMood(mood) {
+      appData.todayMood = mood;
+      saveData();
+      showToast("Mood updated!", mood);
+    }
+
+    function openAddMemoryModal() {
+      document.getElementById('memory-modal-title').textContent = "Add New Memory";
+      document.getElementById('memory-id-input').value = "";
+      document.getElementById('memory-title-input').value = "";
+      document.getElementById('memory-date-input').value = "";
+      document.getElementById('memory-desc-input').value = "";
+      document.getElementById('memory-photo-input').value = "";
+      openModal('memory-modal');
+    }
+
+    function editMemory(id) {
+      const mem = appData.memories.find(m => m.id === id);
+      if (mem) {
+        document.getElementById('memory-modal-title').textContent = "Edit Memory";
+        document.getElementById('memory-id-input').value = mem.id;
+        document.getElementById('memory-title-input').value = mem.title;
+        document.getElementById('memory-date-input').value = mem.date;
+        document.getElementById('memory-desc-input').value = mem.desc;
+        document.getElementById('memory-photo-input').value = "";
+        openModal('memory-modal');
+      }
+    }
+
+    function saveMemoryForm(e) {
+      e.preventDefault();
+      const id = document.getElementById('memory-id-input').value;
+      const title = document.getElementById('memory-title-input').value;
+      const date = document.getElementById('memory-date-input').value;
+      const desc = document.getElementById('memory-desc-input').value;
+      const photoFile = document.getElementById('memory-photo-input').files[0];
+
+      if (id) {
+        const mem = appData.memories.find(m => m.id === Number(id));
+        if (mem) {
+          mem.title = title;
+          mem.date = date;
+          mem.desc = desc;
+
+          if (photoFile) {
+            const reader = new FileReader();
+            reader.onload = (evt) => { 
+              mem.photo = evt.target.result; 
+              saveData(); 
+              closeModal('memory-modal'); 
+              showToast("Memory updated!", "📖"); 
+            };
+            reader.readAsDataURL(photoFile);
+            return;
+          }
+        }
+      } else {
+        const newMem = { id: Date.now(), title, date, desc, photo: '' };
+        if (photoFile) {
+          const reader = new FileReader();
+          reader.onload = (evt) => { 
+            newMem.photo = evt.target.result; 
+            appData.memories.unshift(newMem); 
+            saveData(); 
+            closeModal('memory-modal'); 
+            showToast("Memory added!", "📖"); 
+          };
+          reader.readAsDataURL(photoFile);
+          return;
+        } else {
+          appData.memories.unshift(newMem);
+        }
+      }
+
+      saveData();
+      closeModal('memory-modal');
+      showToast("Memory saved!", "📖");
+    }
+
+    function promptDeleteMemory(id) {
+      memoryToDeleteId = id;
+      openModal('confirm-modal');
+    }
+
+    document.getElementById('confirm-delete-btn').addEventListener('click', () => {
+      if (memoryToDeleteId !== null) {
+        appData.memories = appData.memories.filter(m => m.id !== memoryToDeleteId);
+        saveData();
+        memoryToDeleteId = null;
+        closeModal('confirm-modal');
+        showToast("Memory deleted!", "🗑️");
+      }
+    });
+
+    function addWishlistItem() {
+      const inp = document.getElementById('wishlist-input');
+      if (inp.value.trim()) {
+        appData.wishlist.push({ id: Date.now(), text: inp.value.trim(), done: false });
+        inp.value = '';
+        saveData();
+        showToast("Goal added to Wishlist!", "⭐");
+      }
+    }
+
+    function toggleWishlist(id) {
+      const item = appData.wishlist.find(w => w.id === id);
+      if (item) { item.done = !item.done; saveData(); }
+    }
+
+    function deleteWishlist(id) {
+      appData.wishlist = appData.wishlist.filter(w => w.id !== id);
+      saveData();
+      showToast("Wishlist item removed", "🗑️");
+    }
+
+    function toggleAudio() {
+      const audio = document.getElementById('bg-audio');
+      const btn = document.getElementById('bg-music-btn');
+      if (audio.paused) { audio.play(); btn.textContent = '⏸️ Pause Music'; }
+      else { audio.pause(); btn.textContent = '🎵 Play Music'; }
+    }
+
+    renderApp();
+  </script>
 </body>
-   </html>
+</html>
